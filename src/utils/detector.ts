@@ -51,3 +51,63 @@ export function detectWorkspace(dir: string): DetectedEnv {
 
   return env;
 }
+
+import { execSync } from 'child_process';
+import os from 'os';
+
+export interface InstalledAgents {
+  claudeCode: boolean;
+  antigravity: boolean;
+  geminiCli: boolean;
+  cline: boolean;
+  codex: boolean;
+  kilo: boolean;
+  opencode: boolean;
+}
+
+export function detectInstalledAgents(): InstalledAgents {
+  const agents: InstalledAgents = {
+    claudeCode: false,
+    antigravity: false,
+    geminiCli: false,
+    cline: false,
+    codex: false,
+    kilo: false,
+    opencode: false
+  };
+
+  const checkCommand = (cmd: string): boolean => {
+    try {
+      const checkCmd = process.platform === 'win32' ? `where.exe ${cmd}` : `command -v ${cmd}`;
+      execSync(checkCmd, { stdio: 'ignore' });
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const checkVscodeExtension = (pattern: string): boolean => {
+    const home = os.homedir();
+    const extDir = path.join(home, '.vscode', 'extensions');
+    if (fs.existsSync(extDir)) {
+      try {
+        const files = fs.readdirSync(extDir);
+        return files.some(f => f.toLowerCase().includes(pattern.toLowerCase()));
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  };
+
+  agents.claudeCode = checkCommand('claude') || fs.existsSync(path.join(os.homedir(), '.claudecode'));
+  agents.antigravity = checkCommand('antigravity') || checkCommand('agy') || checkVscodeExtension('antigravity');
+  agents.geminiCli = checkCommand('gemini') || checkVscodeExtension('gemini');
+  agents.cline = checkCommand('cline') || checkVscodeExtension('claude-dev') || checkVscodeExtension('roo-cline');
+  agents.codex = checkCommand('codex') || checkVscodeExtension('codex');
+  agents.kilo = checkCommand('kilo') || checkVscodeExtension('kilo');
+  agents.opencode = checkCommand('opencode') || checkVscodeExtension('opencode');
+
+  return agents;
+}
+

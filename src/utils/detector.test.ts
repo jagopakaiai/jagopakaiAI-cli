@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { detectWorkspace } from './detector.js';
+import { detectWorkspace, detectInstalledAgents } from './detector.js';
 
 const TEMP_TEST_DIR = path.join(os.tmpdir(), 'jagopakai-test-workspace');
 
@@ -42,4 +42,16 @@ describe('Workspace Detector Utility', () => {
     const env = detectWorkspace(TEMP_TEST_DIR);
     expect(env.git).toBe(true);
   });
+
+  it('should return installed agents keys', () => {
+    const agents = detectInstalledAgents();
+    expect(agents).toHaveProperty('claudeCode');
+    expect(agents).toHaveProperty('antigravity');
+    expect(agents).toHaveProperty('geminiCli');
+    expect(agents).toHaveProperty('cline');
+    expect(agents).toHaveProperty('codex');
+    expect(agents).toHaveProperty('kilo');
+    expect(agents).toHaveProperty('opencode');
+  });
 });
+
