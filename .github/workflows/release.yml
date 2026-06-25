@@ -1,0 +1,46 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build JS bundle
+        run: npm run build
+
+      - name: Package standalone binaries
+        run: |
+          npx pkg . --out-path bin --no-bytecode
+          mv bin/jagopakai-linux-x64 bin/jagopakai-linux
+          mv bin/jagopakai-win-x64.exe bin/jagopakai.exe
+
+      - name: Release and Attach Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            bin/jagopakai-linux
+            bin/jagopakai-macos-x64
+            bin/jagopakai-macos-arm64
+            bin/jagopakai.exe
+            install.sh
+            install.ps1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
