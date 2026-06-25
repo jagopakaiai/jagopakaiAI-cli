@@ -1,0 +1,99 @@
+import fs from 'fs';
+import path from 'path';
+
+export interface SkillMetadata {
+  name: string;
+  description: string;
+  [key: string]: any;
+}
+
+export interface ParsedSkill {
+  metadata: SkillMetadata;
+  body: string;
+  isValid: boolean;
+  errors: string[];
+}
+
+const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
+
+export function parseSkillFile(filePath: string): ParsedSkill {
+  const result: ParsedSkill = {
+    metadata: { name: '', description: '' },
+    body: '',
+    isValid: false,
+    errors: []
+  };
+
+  if (!fs.existsSync(filePath)) {
+    result.errors.push('File does not exist.');
+    return result;
+  }
+
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const match = content.match(FRONTMATTER_REGEX);
+
+    if (!match) {
+      result.errors.push('YAML frontmatter structure (delimited by ---) not found at top of file.');
+      return result;
+    }
+
+    const yamlBlock = match[1];
+    result.body = match[2] || '';
+
+    // Simple YAML parser for key-value strings
+    const lines = yamlBlock.split('\n');
+    const meta: Record<string, string> = {};
+
+    for (const line of lines) {
+      const cleanLine = line.trim();
+      if (!cleanLine || cleanLine.startsWith('#')) continue;
+
+      const colonIdx = cleanLine.indexOf(':');
+      if (colonIdx === -1) {
+        result.errors.push(`Invalid line in YAML frontmatter: "${line}"`);
+        continue;
+      }
+
+      const key = cleanLine.substring(0, colonIdx).trim();
+      let val = cleanLine.substring(colonIdx + 1).trim();
+
+      // Strip quotes if present
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.substring(1, val.length - 1);
+      }
+
+      meta[key] = val;
+    }
+
+    result.metadata = meta as unknown as SkillMetadata;
+
+    // Validate fields
+    if (!result.metadata.name) {
+      result.errors.push('Missing required frontmatter property: "name"');
+    }
+    if (!result.metadata.description) {
+      result.errors.push('Missing required frontmatter property: "description"');
+    }
+
+    result.isValid = result.errors.length === 0;
+  } catch (err: any) {
+    result.errors.push(`Parsing failed: ${err.message || String(err)}`);
+  }
+
+  return result;
+}
+
+export function generateSkillTemplate(name: string, description: string): string {
+  return [
+    '---',
+    `name: ${name}`,
+    `description: "${description}"`,
+    '---',
+    '',
+    `# Skill: ${name}`,
+    '',
+    'Write instructions or procedural steps for the AI agent below.',
+    ''
+  ].join('\n');
+}
