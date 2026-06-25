@@ -1,8 +1,8 @@
-# JagoPakaiAI CLI Implementation Plan
+# jagopakaiai-cliAI CLI Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use jagopakaiai-cliAI:subagent-driven-development (recommended) or jagopakaiai-cliAI:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Create a modern, interactive, and beautiful CLI tool called JagoPakaiAI CLI (`jagopakai`) in TypeScript and Node.js. It will allow logging in, detecting environment configurations, and syncing rules from an API, packaged into standalone binaries with custom installer scripts.
+**Goal:** Create a modern, interactive, and beautiful CLI tool called jagopakaiai-cliAI CLI (`jagopakaiai-cli`) in TypeScript and Node.js. It will allow logging in, detecting environment configurations, and syncing rules from an API, packaged into standalone binaries with custom installer scripts.
 
 **Architecture:** Modular Command-Driven Architecture. Commands are placed in `src/commands/`, utility functions in `src/utils/`, packaged with `esbuild` and compiled with `pkg` to standalone binaries.
 
@@ -10,10 +10,10 @@
 
 ## Global Constraints
 - Target platform support: macOS, Linux, Windows.
-- Executable binary name: `jagopakai`.
+- Executable binary name: `jagopakaiai-cli`.
 - Node.js version target: Node 18 or above.
-- Secure local configuration path: `~/.config/jagopakai/config.json`.
-- API base URL: `https://jagopakaiai.my.id/api/skills`.
+- Secure local configuration path: `~/.config/jagopakaiai-cli/config.json`.
+- API base URL: `https://jagopakaiai-cliai.my.id/api/skills`.
 - Sync target files: `.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`.
 
 ---
@@ -32,15 +32,15 @@ Initialize the package, TypeScript compiler options, Vitest testing framework, a
 
 - [ ] **Step 1: Create package.json**
   Write a `package.json` specifying dependencies, esbuild bundling script, and bin target.
-  File: `D:\Projects\vibe\jagopakaiAI-cli\package.json`
+  File: `D:\Projects\vibe\jagopakaiai-cliAI-cli\package.json`
   ```json
   {
-    "name": "jagopakai",
+    "name": "jagopakaiai-cli",
     "version": "1.0.0",
-    "description": "JagoPakaiAI CLI utility for managing AI agent rule configurations",
+    "description": "jagopakaiai-cliAI CLI utility for managing AI agent rule configurations",
     "main": "dist/index.js",
     "bin": {
-      "jagopakai": "./dist/index.js"
+      "jagopakaiai-cli": "./dist/index.js"
     },
     "type": "module",
     "scripts": {
@@ -73,7 +73,7 @@ Initialize the package, TypeScript compiler options, Vitest testing framework, a
   ```
 
 - [ ] **Step 2: Create tsconfig.json**
-  File: `D:\Projects\vibe\jagopakaiAI-cli\tsconfig.json`
+  File: `D:\Projects\vibe\jagopakaiai-cliAI-cli\tsconfig.json`
   ```json
   {
     "compilerOptions": {
@@ -92,7 +92,7 @@ Initialize the package, TypeScript compiler options, Vitest testing framework, a
   ```
 
 - [ ] **Step 3: Create vitest.config.ts**
-  File: `D:\Projects\vibe\jagopakaiAI-cli\vitest.config.ts`
+  File: `D:\Projects\vibe\jagopakaiai-cliAI-cli\vitest.config.ts`
   ```typescript
   import { defineConfig } from 'vitest/config';
 
@@ -171,7 +171,7 @@ Implement the secure configuration utility to save and retrieve the API Key.
   import path from 'path';
   import os from 'os';
 
-  const CONFIG_DIR = path.join(os.homedir(), '.config', 'jagopakai');
+  const CONFIG_DIR = path.join(os.homedir(), '.config', 'jagopakaiai-cli');
   const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
 
   export function getConfigPath(): string {
@@ -238,7 +238,7 @@ Implement the environment scanning utility to detect which developers tools (Cur
   import os from 'os';
   import { detectWorkspace } from './detector.js';
 
-  const TEMP_TEST_DIR = path.join(os.tmpdir(), 'jagopakai-test-workspace');
+  const TEMP_TEST_DIR = path.join(os.tmpdir(), 'jagopakaiai-cli-test-workspace');
 
   describe('Workspace Detector Utility', () => {
     beforeEach(() => {
@@ -355,7 +355,7 @@ Implement the environment scanning utility to detect which developers tools (Cur
 ---
 
 ### Task 4: API Client Utility
-Implement the axios wrapper to fetch skills/rules from `https://jagopakaiai.my.id/api/skills`.
+Implement the axios wrapper to fetch skills/rules from `https://jagopakaiai-cliai.my.id/api/skills`.
 
 **Files:**
 - Create: `src/utils/api.ts`
@@ -381,7 +381,7 @@ Implement the axios wrapper to fetch skills/rules from `https://jagopakaiai.my.i
       const content = await fetchSkillRule('dummy-key', 'laravel-clean-api');
       expect(content).toBe('test-rule-content-here');
       expect(axios.get).toHaveBeenCalledWith(
-        'https://jagopakaiai.my.id/api/skills/laravel-clean-api',
+        'https://jagopakaiai-cliai.my.id/api/skills/laravel-clean-api',
         {
           headers: {
             Authorization: 'Bearer dummy-key'
@@ -408,7 +408,7 @@ Implement the axios wrapper to fetch skills/rules from `https://jagopakaiai.my.i
   import axios from 'axios';
 
   export async function fetchSkillRule(apiKey: string, skillName: string): Promise<string> {
-    const url = `https://jagopakaiai.my.id/api/skills/${encodeURIComponent(skillName)}`;
+    const url = `https://jagopakaiai-cliai.my.id/api/skills/${encodeURIComponent(skillName)}`;
     try {
       const response = await axios.get(url, {
         headers: {
@@ -426,7 +426,7 @@ Implement the axios wrapper to fetch skills/rules from `https://jagopakaiai.my.i
       }
     } catch (error: any) {
       // In case path parameter returns 404, we can attempt query parameter fallback
-      const fallbackUrl = `https://jagopakaiai.my.id/api/skills?name=${encodeURIComponent(skillName)}`;
+      const fallbackUrl = `https://jagopakaiai-cliai.my.id/api/skills?name=${encodeURIComponent(skillName)}`;
       try {
         const fallbackRes = await axios.get(fallbackUrl, {
           headers: {
@@ -478,9 +478,9 @@ Create the logic for commander commands.
   import { saveApiKey } from '../utils/config.js';
 
   export async function loginCommand() {
-    p.intro('JagoPakaiAI Login');
+    p.intro('jagopakaiai-cliAI Login');
     const apiKey = await p.password({
-      message: 'Enter your JagoPakaiAI API Key:',
+      message: 'Enter your jagopakaiai-cliAI API Key:',
       validate: (value) => {
         if (!value || value.trim().length === 0) return 'API Key is required!';
       }
@@ -504,7 +504,7 @@ Create the logic for commander commands.
   import { detectWorkspace } from '../utils/detector.js';
 
   export async function detectCommand() {
-    p.intro('JagoPakaiAI Workspace Detector');
+    p.intro('jagopakaiai-cliAI Workspace Detector');
     
     const s = p.spinner();
     s.start('Scanning directory...');
@@ -513,7 +513,7 @@ Create the logic for commander commands.
     s.stop('Scan complete!');
 
     const apiKey = getApiKey();
-    const apiKeyStatus = apiKey ? 'Active (Key Saved)' : 'Missing (Use "jagopakai login" to authenticate)';
+    const apiKeyStatus = apiKey ? 'Active (Key Saved)' : 'Missing (Use "jagopakaiai-cli login" to authenticate)';
 
     const details = [
       `Workspace: ${currentDir}`,
@@ -526,7 +526,7 @@ Create the logic for commander commands.
     ].join('\n');
 
     p.note(details, 'Audit Summary');
-    p.outro('To sync rules, run: jagopakai sync <skill-name>');
+    p.outro('To sync rules, run: jagopakaiai-cli sync <skill-name>');
   }
   ```
 
@@ -541,11 +541,11 @@ Create the logic for commander commands.
   import { fetchSkillRule } from '../utils/api.js';
 
   export async function syncCommand(skillName: string | undefined) {
-    p.intro('JagoPakaiAI Config Synchronizer');
+    p.intro('jagopakaiai-cliAI Config Synchronizer');
 
     const apiKey = getApiKey();
     if (!apiKey) {
-      p.log.error('Authentication required! Please run "jagopakai login" first.');
+      p.log.error('Authentication required! Please run "jagopakaiai-cli login" first.');
       process.exit(1);
     }
 
@@ -656,13 +656,13 @@ Bind everything together inside the Commander program file, configure the esbuil
   const program = new Command();
 
   program
-    .name('jagopakai')
-    .description('JagoPakaiAI Command Line Interface rules synchronizer')
+    .name('jagopakaiai-cli')
+    .description('jagopakaiai-cliAI Command Line Interface rules synchronizer')
     .version('1.0.0');
 
   program
     .command('login')
-    .description('Authenticate with your JagoPakaiAI API Key')
+    .description('Authenticate with your jagopakaiai-cliAI API Key')
     .action(async () => {
       await loginCommand();
     });
@@ -741,8 +741,8 @@ Test packaging the bundler code into actual native binaries using pkg.
   Expected: Standalone binaries generated inside `bin/` directory.
 
 - [ ] **Step 2: Verify binary works (detect)**
-  Run: `.\bin\jagopakai-win-x64.exe --help` or corresponding binary.
-  Expected: Outputs the help commands of `jagopakai`.
+  Run: `.\bin\jagopakaiai-cli-win-x64.exe --help` or corresponding binary.
+  Expected: Outputs the help commands of `jagopakaiai-cli`.
 
 - [ ] **Step 3: Commit updates**
   ```bash
@@ -752,12 +752,12 @@ Test packaging the bundler code into actual native binaries using pkg.
 ---
 
 ### Task 8: Distribution Assets
-Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopakai.rb`, and GitHub Actions release config.
+Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopakaiai-cli.rb`, and GitHub Actions release config.
 
 **Files:**
 - Create: `install.sh`
 - Create: `install.ps1`
-- Create: `jagopakai.rb`
+- Create: `jagopakaiai-cli.rb`
 - Create: `.github/workflows/release.yml`
 
 **Interfaces:**
@@ -770,8 +770,8 @@ Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopa
   set -e
 
   OWNER="username"
-  REPO="jagopakai-cli"
-  BINARY="jagopakai"
+  REPO="jagopakaiai-cli-cli"
+  BINARY="jagopakaiai-cli"
 
   OS=$(uname -s | tr '[:upper:]' '[:lower:]')
   ARCH=$(uname -m)
@@ -802,26 +802,26 @@ Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopa
 
   echo "Installing to $DEST (requires sudo)..."
   sudo mv "$BINARY" "$DEST"
-  echo "JagoPakaiAI CLI installed successfully!"
+  echo "jagopakaiai-cliAI CLI installed successfully!"
   ```
 
 - [ ] **Step 2: Create install.ps1**
   File: `install.ps1`
   ```powershell
   $owner = "username"
-  $repo = "jagopakai-cli"
-  $binary = "jagopakai"
+  $repo = "jagopakaiai-cli-cli"
+  $binary = "jagopakaiai-cli"
   $suffix = "win-x64.exe"
 
   $url = "https://github.com/$owner/$repo/releases/latest/download/${binary}-${suffix}"
-  $installDir = Join-Path $env:USERPROFILE ".jagopakai\bin"
+  $installDir = Join-Path $env:USERPROFILE ".jagopakaiai-cli\bin"
   $dest = Join-Path $installDir "${binary}.exe"
 
   if (!(Test-Path $installDir)) {
       New-Item -ItemType Directory -Force -Path $installDir | Out-Null
   }
 
-  Write-Host "Downloading JagoPakaiAI CLI from $url..."
+  Write-Host "Downloading jagopakaiai-cliAI CLI from $url..."
   Invoke-WebRequest -Uri $url -OutFile $dest
 
   Write-Host "Adding $installDir to User PATH..."
@@ -831,30 +831,30 @@ Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopa
       $env:Path += ";$installDir"
   }
 
-  Write-Host "JagoPakaiAI CLI installed successfully! Please restart your terminal."
+  Write-Host "jagopakaiai-cliAI CLI installed successfully! Please restart your terminal."
   ```
 
 - [ ] **Step 3: Create Homebrew Formula**
-  File: `jagopakai.rb`
+  File: `jagopakaiai-cli.rb`
   ```ruby
-  class Jagopakai < Formula
-    desc "JagoPakaiAI CLI rules configuration manager"
-    homepage "https://github.com/username/jagopakai-cli"
-    url "https://github.com/username/jagopakai-cli/releases/latest/download/jagopakai-macos-x64"
+  class jagopakaiai-cli < Formula
+    desc "jagopakaiai-cliAI CLI rules configuration manager"
+    homepage "https://github.com/username/jagopakaiai-cli-cli"
+    url "https://github.com/username/jagopakaiai-cli-cli/releases/latest/download/jagopakaiai-cli-macos-x64"
     # We could supply both arm64 and x64 logic
     version "1.0.0"
     sha256 "replace-with-checksum-during-release"
 
     def install
       if Hardware::CPU.intel?
-        bin.install "jagopakai-macos-x64" => "jagopakai"
+        bin.install "jagopakaiai-cli-macos-x64" => "jagopakaiai-cli"
       else
-        bin.install "jagopakai-macos-arm64" => "jagopakai"
+        bin.install "jagopakaiai-cli-macos-arm64" => "jagopakaiai-cli"
       end
     end
 
     test do
-      system "#{bin}/jagopakai", "--version"
+      system "#{bin}/jagopakaiai-cli", "--version"
     end
   end
   ```
@@ -893,17 +893,17 @@ Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopa
         - name: Package standalone binaries
           run: |
             npx pkg . --out-path bin
-            mv bin/jagopakai-linux-x64 bin/jagopakai-linux
-            mv bin/jagopakai-win-x64.exe bin/jagopakai.exe
+            mv bin/jagopakaiai-cli-linux-x64 bin/jagopakaiai-cli-linux
+            mv bin/jagopakaiai-cli-win-x64.exe bin/jagopakaiai-cli.exe
 
         - name: Release and Attach Assets
           uses: softprops/action-gh-release@v2
           with:
             files: |
-              bin/jagopakai-linux
-              bin/jagopakai-macos-x64
-              bin/jagopakai-macos-arm64
-              bin/jagopakai.exe
+              bin/jagopakaiai-cli-linux
+              bin/jagopakaiai-cli-macos-x64
+              bin/jagopakaiai-cli-macos-arm64
+              bin/jagopakaiai-cli.exe
               install.sh
               install.ps1
           env:
@@ -912,6 +912,6 @@ Generate installer scripts `install.sh`, `install.ps1`, Homebrew Formula `jagopa
 
 - [ ] **Step 5: Commit installer changes**
   ```bash
-  git add install.sh install.ps1 jagopakai.rb .github/workflows/release.yml
+  git add install.sh install.ps1 jagopakaiai-cli.rb .github/workflows/release.yml
   git commit -m "feat: add installation scripts, Homebrew Formula, and GitHub Release action workflow"
   ```

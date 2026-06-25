@@ -3,3 +3,5 @@ dist/
 bin/
 .env
 .DS_Store
+playground/
+

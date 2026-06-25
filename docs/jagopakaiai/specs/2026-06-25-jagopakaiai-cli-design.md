@@ -1,10 +1,10 @@
-# Design Document: JagoPakaiAI CLI (jagopakai)
+# Design Document: jagopakaiai-cliAI CLI (jagopakaiai-cli)
 
 **Date**: 2026-06-25  
 **Status**: Approved
 
 ## 1. Overview
-JagoPakaiAI CLI (`jagopakai`) is a Node.js/TypeScript-based command-line tool that enables developers to detect their workspace environment and sync AI Agent rule files (like `.cursorrules`, `.claudecoderc`, or `.github/copilot-instructions.md`) from the JagoPakaiAI API.
+jagopakaiai-cliAI CLI (`jagopakaiai-cli`) is a Node.js/TypeScript-based command-line tool that enables developers to detect their workspace environment and sync AI Agent rule files (like `.cursorrules`, `.claudecoderc`, or `.github/copilot-instructions.md`) from the jagopakaiai-cliAI API.
 
 ## 2. Core Architecture
 We adopt a **Modular Command-Driven Architecture** using the following stack:
@@ -17,7 +17,7 @@ We adopt a **Modular Command-Driven Architecture** using the following stack:
 
 ### Directory Structure
 ```
-jagopakaiAI-cli/
+jagopakaiai-cliAI-cli/
 ├── src/
 │   ├── index.ts              # Entry point (commander definition)
 │   ├── commands/
@@ -25,7 +25,7 @@ jagopakaiAI-cli/
 │   │   ├── detect.ts         # CLI Detect handler
 │   │   └── sync.ts           # CLI Sync handler
 │   └── utils/
-│       ├── config.ts         # Configuration reader/writer (~/.config/jagopakai/config.json)
+│       ├── config.ts         # Configuration reader/writer (~/.config/jagopakaiai-cli/config.json)
 │       ├── detector.ts       # Workspace environment detector
 │       └── api.ts            # API interaction helper
 ├── package.json
@@ -33,7 +33,7 @@ jagopakaiAI-cli/
 ├── esbuild.config.js
 ├── install.sh                # curl installer for Unix
 ├── install.ps1               # PowerShell installer for Windows
-├── jagopakai.rb              # Homebrew Formula
+├── jagopakaiai-cli.rb              # Homebrew Formula
 └── .github/
     └── workflows/
         └── release.yml       # Release & cross-compilation pipeline
@@ -41,14 +41,14 @@ jagopakaiAI-cli/
 
 ## 3. Command Specifications
 
-### 3.1. `jagopakai login`
+### 3.1. `jagopakaiai-cli login`
 - **Behavior**:
-  - Interactively prompts for the JagoPakaiAI API Key.
+  - Interactively prompts for the jagopakaiai-cliAI API Key.
   - Validates formatting.
-  - Saves the API key to `~/.config/jagopakai/config.json`.
+  - Saves the API key to `~/.config/jagopakaiai-cli/config.json`.
 - **Output**: Clean feedback indicating successful login.
 
-### 3.2. `jagopakai detect`
+### 3.2. `jagopakaiai-cli detect`
 - **Behavior**:
   - Checks if the user is authenticated (checks `config.json` for API key).
   - Scans current working directory (`process.cwd()`) recursively or at root for:
@@ -61,11 +61,11 @@ jagopakaiAI-cli/
   - Prints a beautifully styled list of detected files/environments.
   - Indicates API key status (Active / Missing).
 
-### 3.3. `jagopakai sync [skill-name]`
+### 3.3. `jagopakaiai-cli sync [skill-name]`
 - **Behavior**:
   - Requires active API key. If missing, prompts user to login.
-  - Sends a GET request to `https://jagopakaiai.my.id/api/skills` with `Authorization: Bearer <API_KEY>` or fetches the specific skill.
-    - We will request `https://jagopakaiai.my.id/api/skills/[skill-name]` or `https://jagopakaiai.my.id/api/skills?name=[skill-name]`.
+  - Sends a GET request to `https://jagopakaiai-cliai.my.id/api/skills` with `Authorization: Bearer <API_KEY>` or fetches the specific skill.
+    - We will request `https://jagopakaiai-cliai.my.id/api/skills/[skill-name]` or `https://jagopakaiai-cliai.my.id/api/skills?name=[skill-name]`.
   - Parses the response JSON (expected structure: `{ "content": "..." }`).
   - If multiple target config files are supported/detected in the workspace:
     - Interactively prompts the user to select which config files to write (e.g., `.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`).
@@ -78,7 +78,7 @@ jagopakaiAI-cli/
 - **Installers**:
   - `install.sh`: Downloads latest release for client's OS from GitHub Releases and copies it to `/usr/local/bin`.
   - `install.ps1`: Downloads latest Windows release and adds it to User's PATH.
-  - `jagopakai.rb`: Defines Homebrew installation strategy.
+  - `jagopakaiai-cli.rb`: Defines Homebrew installation strategy.
   - `.github/workflows/release.yml`: Automates builds on tag release using GitHub runner, publishing binaries.
 
 ## 5. Security & Error Handling
