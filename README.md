@@ -3,20 +3,24 @@
 [![GitHub Release](https://img.shields.io/github/v/release/jagopakaiai/jagopakaiAI-cli?style=flat-square)](https://github.com/jagopakaiai/jagopakaiAI-cli/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/jagopakaiai/jagopakaiAI-cli/release.yml?style=flat-square)](https://github.com/jagopakaiai/jagopakaiAI-cli/actions)
 [![License](https://img.shields.io/github/license/jagopakaiai/jagopakaiAI-cli?style=flat-square)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/jagopakaiai-cli?color=brightgreen&style=flat-square)](https://www.npmjs.com/package/jagopakaiai-cli)
 
-**JagoPakaiAI CLI** is a modern Command Line Interface utility designed to automatically detect, manage, and synchronize local AI Agent and Editor rule configurations (such as `.cursorrules`, `.claudecoderc`, and `.github/copilot-instructions.md`) directly in your workspace. 
+**JagoPakaiAI CLI** is a modern Command Line Interface utility designed to automatically detect, manage, and synchronize local AI Agent and Editor rule configurations (such as `.cursorrules`, `.claudecoderc`, and `.github/copilot-instructions.md`) directly in your workspace.
 
-Synchronize custom and community-developed developer instructions (skills) directly from the JagoPakaiAI API to optimize your AI coding experience.
+Synchronize custom and community-developed developer instructions (skills) directly from the JagoPakaiAI API, configure multi-provider AI keys, and automatically set up pre-packaged Model Context Protocol (MCP) servers locally to optimize your AI pair programming experience.
 
 ---
 
 ## ✨ Features
 
-- ⚙️ **Interactive Prompts**: Beautiful, styled prompts, spin indicators, and menus powered by `@clack/prompts`.
-- 🔍 **Auto-Environment Detection**: Intelligently scans the current workspace for Git repositories, active AI/Editor configuration files, and project stack languages (Node.js, Laravel/PHP, Python, Rust, Go).
+- ⚙️ **Interactive Prompts**: Beautiful, styled prompts, spin indicators, and selection menus powered by `@clack/prompts`.
+- 🔍 **Auto-Environment Auditing**: Intelligently scans the current workspace for Git repositories, active AI/Editor configuration files, and project stack languages (Node.js, Laravel/PHP, Python, Rust, Go).
 - 🔄 **Multi-Target Synchronization**: Sync single skill configurations to one or more rules files simultaneously (`.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`).
-- 🔒 **Secure Local Config**: Saves your API keys securely inside your local machine profile folder (`~/.config/jagopakaiai-cli/config.json`).
-- 📦 **Zero-Dependency Native Binaries**: Distributed as standalone executable binaries for macOS, Linux, and Windows.
+- 🛠️ **Recommended MCP Directory**: Dynamic loading and installation of over 130+ pre-scraped and curated MCP server configurations (including `sqlite`, `postgres`, `filesystem`, `brave-search`, `gcalendar`, `gmail`, `docker`, and `upstash-context7`).
+- 🔑 **AI Provider Keys Manager**: Securely stores and manages API credentials locally for multiple AI providers (Gemini, OpenRouter, Groq, and JagoPakaiAI) inside your user profile.
+- 🚀 **Project Initializer & PRD Generator**: Seamlessly scaffolds new projects, detects active AI environments, configures local agent rules, and creates a tailored `PRD.md` (Product Requirements Document).
+- 🔒 **Secure Local Config**: Saves configuration files with restrictive file permissions (`0o600` on Unix-like systems) to prevent unauthorized token reading.
+- 📦 **Zero-Dependency Native Binaries**: Fully compiled standalone binaries packaged for Windows (x64), macOS (Intel/Apple Silicon), and Linux (x64).
 
 ---
 
@@ -26,30 +30,38 @@ Synchronize custom and community-developed developer instructions (skills) direc
 jagopakaiAI-cli/
 ├── .github/
 │   └── workflows/
-│       └── release.yml       # Release & cross-compilation GitHub Actions pipeline
+│       └── release.yml       # Automated test, release, & dual npm publication CI/CD pipeline
 ├── bin/                      # Compiled native executables (gitignored)
 ├── dist/                     # Compiled JS bundle (gitignored)
-├── docs/                     # Design & architecture documentation
+├── docs/                     # Documentation folder
 │   ├── api-guide.md          # API Integration & payload guide
-│   └── user-guide.md         # Advanced usage & configuration guide
-│   └── superpowers/
-│       ├── specs/            # Technical specifications
-│       └── plans/            # Actionable implementation plans
+│   ├── user-guide.md         # Advanced usage & configuration guide
+│   ├── mcp-guide.md          # Curated MCP configurations reference manual
+│   └── architecture.md       # CLI system design & file resolver architecture
+├── mcp/                      # Over 130+ dynamic MCP configuration & documentation templates
+│   ├── upstash-context7/     # Example: Context7 MCP template (README.md & config.json)
+│   ├── sqlite/               # Example: SQLite MCP template
+│   └── ...
+├── skills/                   # Static rules and instruction templates
 ├── src/                      # TypeScript source code
 │   ├── commands/             # CLI commander actions
 │   │   ├── detect.ts         # 'detect' environment action
-│   │   ├── login.ts          # 'login' interactive credentials action
+│   │   ├── init.ts           # 'init' project setup & PRD generator action
+│   │   ├── keys.ts           # 'keys' AI provider credential manager action
+│   │   ├── login.ts          # 'login' JagoPakaiAI API key setup action
+│   │   ├── mcp.ts            # 'mcp' catalog and installation wizard action
+│   │   ├── skills.ts         # 'skills' listing & sync-check action
 │   │   └── sync.ts           # 'sync' API rules synchronization action
-│   │   index.ts              # Commander routing entrypoint
+│   │   index.ts              # Commander routing entrypoint & main menu
 │   └── utils/                # Utility helpers
 │       ├── api.ts            # JagoPakaiAI API HTTP client wrapper
 │       ├── config.ts         # Secure local JSON configuration reader/writer
-│       └── detector.ts       # Workspace environment auditing engine
-├── .gitignore                # Git paths to ignore
+│       ├── detector.ts       # Workspace environment auditing engine
+│       ├── mcp.ts            # MCP configuration utility & dynamic loader
+│       └── skills-parser.ts  # Markdown skills parser and validator
 ├── esbuild.config.js         # ESBuild configuration bundling TS into single CommonJS file
 ├── install.ps1               # Installer script for Windows / PowerShell
 ├── install.sh                # Installer script for macOS/Linux / Curl shell
-├── jagopakaiai-cli.rb        # Homebrew Formula specification
 ├── package.json              # Project manifests & dependencies configurations
 ├── tsconfig.json             # TypeScript compiler settings
 └── vitest.config.ts          # Testing configurations for Vitest
@@ -89,15 +101,11 @@ Open PowerShell and run the following command to download the Windows executable
 irm https://raw.githubusercontent.com/jagopakaiai/jagopakaiAI-cli/main/install.ps1 | iex
 ```
 
-#### 🍺 macOS (via Homebrew)
-Install using our Homebrew tap formula:
-```bash
-brew install jagopakaiai/tap/jagopakaiai-cli
-```
-
 ---
 
 ## 💻 CLI Commands
+
+When run without commands or arguments, `jagopakaiai-cli` launches an **interactive graphical main menu console** displaying all available features. You can also run commands directly with options:
 
 ### 🔑 1. `jagopakaiai-cli login`
 Authenticates with your JagoPakaiAI credentials. You will be prompted to enter your API Key.
@@ -109,16 +117,16 @@ The key is securely written to your home directory:
 
 ---
 
-### 🔑 2. `jagopakaiai-cli keys`
-Manages API keys for various AI providers (Gemini, OpenRouter, Groq, and JagoPakaiAI). You can run this command to start an interactive management manager wizard, or supply credentials directly.
+### 🔑 2. `jagopakaiai-cli keys [provider] [key]`
+Manages API keys for various AI providers (Gemini, OpenRouter, Groq, and JagoPakaiAI). 
 ```bash
-# Start the interactive keys wizard
+# Start the interactive keys wizard (highly recommended)
 jagopakaiai-cli keys
 
 # Save a specific provider's API key directly
-jagopakaiai-cli keys groq <api-key>
 jagopakaiai-cli keys gemini <api-key>
 jagopakaiai-cli keys openrouter <api-key>
+jagopakaiai-cli keys groq <api-key>
 jagopakaiai-cli keys jagopakaiai <api-key>
 ```
 
@@ -129,36 +137,57 @@ Scans the current workspace directory to audit the existing configurations and a
 ```bash
 jagopakaiai-cli detect
 ```
-Example Output:
-```text
-┌  JagoPakaiAI Workspace Detector
-│
-◇  Scan complete!
-│
-◇  Audit Summary ────────────────────────────────────────────╮
-│                                                            │
-│  Workspace: /home/user/my-project                          │
-│  API Key: Active (Key Saved)                               │
-│  Git Repo: Yes                                             │
-│  Cursor Rules Config: Not found                            │
-│  Claude Code Config: Detected                              │
-│  Copilot Config: Not found                                 │
-│  Project Type: NodeJS/JavaScript                           │
-│                                                            │
-├────────────────────────────────────────────────────────────╯
-│
-└  To sync rules, run: jagopakaiai-cli sync <skill-name>
+It prints a detailed summary displaying:
+- Workspace absolute path.
+- Repository configuration (Git active).
+- AI agent configuration files present (`.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`).
+- Project stack languages & frameworks.
+- Active AI provider API keys credentials status.
+
+---
+
+### 🚀 4. `jagopakaiai-cli init`
+Guides you through setting up a new project workspace.
+```bash
+jagopakaiai-cli init
+```
+- Scans and detects installed system AI agents (Claude Code, Cline/Roo-Code, Antigravity, etc.).
+- Prompt for project name, technology stack, goal, and workflow style (e.g. TDD, Feature-Driven).
+- Generates configured rule files (`.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`) pre-populated with your chosen stack and workflow guidelines.
+- Prompts to sync a skill profile from the JagoPakaiAI API.
+- Generates a tailored `PRD.md` (Product Requirements Document) inside the root directory.
+
+---
+
+### 📚 5. `jagopakaiai-cli skills`
+Lists all available local/custom instruction profiles and audits their synchronization status in the current project files.
+```bash
+jagopakaiai-cli skills
 ```
 
 ---
 
-### 🔄 4. `jagopakaiai-cli sync [skill-name]`
+### 🔄 6. `jagopakaiai-cli sync [skill-name]`
 Synchronizes and writes custom editor instruction rules for the specified skill from the JagoPakaiAI API directly into your workspace.
 ```bash
 jagopakaiai-cli sync laravel-clean-api
 ```
 - If multiple environments are detected (e.g. both Cursor and Claude Code settings are found), you will be interactively prompted to choose which rule files to write to.
 - It displays beautiful animated spinners and logs successful sync writes.
+
+---
+
+### 🛠️ 7. `jagopakaiai-cli mcp [install-name]`
+Lists, views, and installs curated Model Context Protocol (MCP) servers to extend AI coding assistant capabilities.
+```bash
+# Start the interactive recommended MCP list & installation wizard
+jagopakaiai-cli mcp
+
+# Install a recommended MCP server directly (e.g., sqlite)
+jagopakaiai-cli mcp sqlite
+```
+- Supports installation scripts for standard servers, customizing execution arguments (e.g. allowed paths for `filesystem`, DB files for `sqlite`/`postgres`, API Keys for `brave-search` or `github`).
+- Directly registers the configuration inside the Claude Code configuration environment file (`~/.claudecode/config.json`).
 
 ---
 

@@ -6,5 +6,8 @@ bin/
 playground/
 .agents/
 .npmrc
+.superpowers/
+docs/jagopakaiai/
+docs/superpowers/
 
 

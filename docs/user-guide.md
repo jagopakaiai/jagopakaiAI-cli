@@ -1,95 +1,126 @@
 # JagoPakaiAI CLI User Guide
 
-This guide provides an in-depth look at using, configuring, and troubleshooting the JagoPakaiAI Command Line Interface tool (`jagopakaiai-cli`).
+This guide provides an in-depth look at configuring, executing, and troubleshooting the JagoPakaiAI Command Line Interface tool (`jagopakaiai-cli`).
 
 ---
 
-## Configuration Location
+## 📂 Configuration Storage & Security
 
-JagoPakaiAI CLI stores user configurations globally to maintain your login session across multiple project workspaces.
+JagoPakaiAI CLI stores credentials and user configurations globally on your local machine to preserve authentication state across different workspaces.
 
+### 1. Configuration File Paths
 - **Windows**: `C:\Users\<YourUsername>\.config\jagopakaiai-cli\config.json`
 - **macOS / Linux**: `~/.config/jagopakaiai-cli/config.json`
 
-### File Format
-The file is structured as a basic JSON payload:
+### 2. Configuration JSON Schema
+The configuration file is formatted in standard JSON and houses credentials for JagoPakaiAI as well as external LLM providers:
 ```json
 {
-  "apiKey": "your-api-key-here"
+  "apiKey": "jago_api_token_here",
+  "geminiApiKey": "gemini_api_token_here",
+  "openrouterApiKey": "openrouter_api_token_here",
+  "groqApiKey": "groq_api_token_here"
 }
 ```
 
-> **Security Note:** On Unix-like platforms (macOS/Linux), the CLI creates this file with restrictive read/write permissions (`0o600` or `-rw-------`) so other local users cannot inspect your token.
+### 3. File Permissions
+To prevent local token sniffing:
+- On Unix-like systems (macOS, Linux), the configuration file is created with restricted read/write permissions (`0o600` or `-rw-------`). 
+- On Windows, standard ACL restrictions protect user profile config folders.
 
 ---
 
-## Detailed Commands Workflow
+## 💻 Detailed Commands Workflow
 
-### 1. Authentication (`login`)
-To communicate with the JagoPakaiAI API, you must activate the CLI session.
+When executing `jagopakaiai-cli` without parameters, an interactive terminal dashboard menu is launched. You can also run commands directly with flags and arguments:
+
+### 1. `login` (JagoPakaiAI Key Setup)
+Authenticates your terminal with the JagoPakaiAI backend API.
 ```bash
 jagopakaiai-cli login
 ```
-1. The terminal will obscure your input for safety while you type or paste your key.
-2. If the API key is valid, it writes to the global path.
-3. You can override an existing session at any time by running the command again.
+- Prompt hides input characters during entry for maximum safety.
+- Validates token against the JagoPakaiAI endpoint and saves it on success.
 
-### 2. Multi-Provider AI Keys Management (`keys`)
-To set up keys for external AI providers (Gemini, OpenRouter, Groq) or JagoPakaiAI:
+### 2. `keys [provider] [key]` (Multi-Provider Key Manager)
+Configures LLM provider credentials used by local agents (e.g. Cline, Claude Code, etc.) to access Gemini, Groq, or OpenRouter.
 ```bash
-# Interactively configure provider keys
+# Launch the interactive configuration wizard
 jagopakaiai-cli keys
 
-# Directly configure a specific key
-jagopakaiai-cli keys groq <api-key>
+# Or set provider keys directly:
+jagopakaiai-cli keys gemini <api-key>
 ```
-1. Run without arguments to launch an interactive selection and configuration wizard.
-2. Direct CLI invocation writes/updates the key for the provider instantly.
-3. Allows verifying and deleting configured keys.
+- Interactive wizard lets you view current credentials (masked for privacy), update them, or purge them.
 
-### 3. Workspace Diagnostics (`detect`)
-Use this command to audit a newly cloned repository or check configuration status.
+### 3. `detect` (Workspace Scanner)
+Scans the current workspace directory to identify configuration environments.
 ```bash
 jagopakaiai-cli detect
 ```
-This command performs light scanning at the root directory of your workspace:
-- `.git`: Confirms if the directory is a Git repository.
-- `.cursorrules`: Indicates the workspace is ready for Cursor.
-- `.claudecoderc` or `.claudecode/`: Indicates the workspace is set up for Claude Code.
-- `.github/copilot-instructions.md`: Indicates the workspace supports GitHub Copilot instructions.
-- Checks files like `package.json`, `composer.json`, `Cargo.toml`, etc., to log the runtime stack context.
-- Prints the status of each configured API key (JagoPakaiAI, Gemini, OpenRouter, Groq).
+Analyzes the workspace root recursively for:
+- Git configuration (`.git`).
+- Active rule files (`.cursorrules`, `.claudecoderc`, `.github/copilot-instructions.md`).
+- Project stack indicators (`package.json` for Node, `composer.json` for Laravel/PHP, `Cargo.toml` for Rust, etc.).
+- Active LLM keys status in the system config.
 
-### 4. Fetching Instructions (`sync`)
-To fetch AI rules for your workspace:
+### 4. `init` (Project Bootstrapper & PRD Generator)
+Generates developer workspaces and AI agent rule files matching your goals.
 ```bash
-jagopakaiai-cli sync [skill-name]
+jagopakaiai-cli init
 ```
-If you omit the `[skill-name]` argument, the CLI will prompt you to enter it interactively.
+- Checks system paths for installed AI coding agents (Claude Code, Antigravity, Cline, Kilo, etc.).
+- Interactively gathers project info (stack, target language, goals, workflow methodology like TDD or Feature-Driven).
+- Assembles and outputs optimized `.cursorrules`, `.claudecoderc`, or `.github/copilot-instructions.md` containing customized programming directives.
+- Prompts you to sync a remote skill rule directly.
+- Creates a structured `PRD.md` (Product Requirements Document) template inside your root directory.
 
-#### Behavior when multiple environments are detected:
-If the workspace has both `.cursorrules` and `.claudecoderc` active, the CLI will present a multi-select prompt:
-```text
-Select AI rule configs to write to:
-[ ] Cursor Rules (.cursorrules)
-[ ] Claude Code (.claudecoderc)
-[ ] GitHub Copilot (.github/copilot-instructions.md)
+### 5. `skills` (Catalog Explorer)
+Lists all local and registered community skill instruction profiles and audits if they are synchronized with the active rule files in the current workspace.
+```bash
+jagopakaiai-cli skills
 ```
-Use the arrow keys and Spacebar to toggle targets, then press Enter to execute.
+
+### 6. `sync [skill-name]` (Rules Synchronizer)
+Downloads rules from JagoPakaiAI API and writes them into target files.
+```bash
+jagopakaiai-cli sync typescript-esm
+```
+- Pulls instruction sets from the remote registry.
+- If multiple rule files are detected (e.g. both Cursor and Claude Code configurations), it prompts you to select one or more write targets.
+- Merges code instructions and overwrites existing rules safely.
+
+### 7. `mcp [install-name]` (Model Context Protocol Installer)
+Catalogues and configures recommended Model Context Protocol (MCP) servers locally.
+```bash
+# Open interactive catalog
+jagopakaiai-cli mcp
+
+# Install specific server directly
+jagopakaiai-cli mcp sqlite
+```
+- Reads configurations dynamically from the dynamic templates inside `mcp/`.
+- Guides user inputs for required variables (like database paths or API Keys).
+- Automatically registers the server definition inside the Claude Code config file (`~/.claudecode/config.json`).
 
 ---
 
-## Troubleshooting
+## 🛠️ Troubleshooting Scenarios
 
-### 1. Connection Failures
-If you receive a connection error during synchronization:
-- Ensure you have active internet access.
-- Verify the JagoPakaiAI API is reachable at `https://jagopakaiai.my.id/`.
-- Ensure no corporate proxies are blocking standard HTTP requests.
+### 1. Connection Errors / API Reachability
+If the CLI reports HTTP errors during `sync` or `login`:
+- Verify internet connectivity.
+- Check if `https://jagopakaiai.my.id/` is accessible in your browser.
+- If behind a proxy, set your system proxy environment variables:
+  - Windows: `$env:HTTP_PROXY="http://yourproxy:port"`
+  - macOS/Linux: `export HTTP_PROXY="http://yourproxy:port"`
 
-### 2. "Authentication Required"
-If sync commands abort with an auth error, run:
-```bash
-jagopakaiai-cli login
-```
-to re-apply your API credentials.
+### 2. "Authentication Required" or "Invalid API Key"
+If requests are rejected with a 401 Unauthorized code:
+- Run `jagopakaiai-cli login` to update your main API token.
+- Validate that the token does not contain trailing spaces or incorrect characters.
+
+### 3. Permission Errors / Write Faults
+If the CLI fails to write rules to `.cursorrules` or `.claudecoderc`:
+- Confirm you have write permissions in the target folder.
+- On Windows, ensure your shell is not running under constrained sandbox settings that block file modifications.
