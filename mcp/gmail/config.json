@@ -1,0 +1,14 @@
+{
+  "name": "gmail",
+  "displayName": "Gmail",
+  "description": "Gmail integration allowing reading, drafting, and sending emails",
+  "repository": "https://github.com/modelcontextprotocol/servers",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-gmail"
+    ]
+  },
+  "env": {}
+}

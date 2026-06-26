@@ -1,0 +1,13 @@
+{
+  "name": "brave-search",
+  "displayName": "Brave Search",
+  "description": "Brave Search engine API integration for web search capabilities",
+  "repository": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-brave-search"
+    ]
+  }
+}

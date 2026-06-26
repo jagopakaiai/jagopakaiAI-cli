@@ -1,0 +1,13 @@
+{
+  "name": "github",
+  "displayName": "GitHub",
+  "description": "Enables repository, pull requests, and issues automation",
+  "repository": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/github",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-github"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "memory",
+  "displayName": "Memory",
+  "description": "Graph-based knowledge indexing and semantic storage",
+  "repository": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-memory"
+    ]
+  }
+}

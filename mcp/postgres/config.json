@@ -1,0 +1,13 @@
+{
+  "name": "postgres",
+  "displayName": "Postgres",
+  "description": "Postgres database connection and explorer tool",
+  "repository": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-postgres"
+    ]
+  }
+}

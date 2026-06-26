@@ -1,0 +1,15 @@
+{
+  "name": "sqlite",
+  "displayName": "SQLite",
+  "description": "SQLite database inspection and operations tool",
+  "repository": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sqlite",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-sqlite",
+      "--db",
+      "sqlite.db"
+    ]
+  }
+}

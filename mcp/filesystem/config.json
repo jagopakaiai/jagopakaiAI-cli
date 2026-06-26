@@ -1,0 +1,14 @@
+{
+  "name": "filesystem",
+  "displayName": "Filesystem",
+  "description": "Provides controlled local filesystem access to AI agents",
+  "repository": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "./"
+    ]
+  }
+}

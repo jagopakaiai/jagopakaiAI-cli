@@ -1,0 +1,13 @@
+{
+  "name": "fetch",
+  "displayName": "Fetch",
+  "description": "Fetches web content and converts HTML to markdown",
+  "repository": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-fetch"
+    ]
+  }
+}

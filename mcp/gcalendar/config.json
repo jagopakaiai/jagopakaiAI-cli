@@ -1,0 +1,14 @@
+{
+  "name": "gcalendar",
+  "displayName": "Google Calendar",
+  "description": "Google Calendar integration for scheduling and event tracking",
+  "repository": "https://github.com/modelcontextprotocol/servers",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-gcalendar"
+    ]
+  },
+  "env": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "docker",
+  "displayName": "Docker",
+  "description": "Manage and inspect local Docker containers and images",
+  "repository": "https://github.com/modelcontextprotocol/servers",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-docker"
+    ]
+  },
+  "env": {}
+}
