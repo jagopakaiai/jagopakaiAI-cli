@@ -1,0 +1,15 @@
+{
+  "name": "pubnub-mcp-server",
+  "displayName": "PubNub MCP Server",
+  "description": "PubNub Model Context Protocol MCP Server for Cursor and Claude",
+  "repository": "https://github.com/pubnub/pubnub-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@pubnub/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

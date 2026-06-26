@@ -1,0 +1,15 @@
+{
+  "name": "dev.svelte-mcp",
+  "displayName": "Svelte MCP",
+  "description": "The official Svelte MCP server providing docs and autofixing tools for Svelte development",
+  "repository": "https://github.com/sveltejs/ai-tools",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@sveltejs/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

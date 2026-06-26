@@ -1,0 +1,12 @@
+{
+  "name": "co.axiom-mcp",
+  "displayName": "Axiom",
+  "description": "List datasets, schemas, run APL queries, and use prompts for exploration, anomalies, and monitoring.",
+  "repository": "https://github.com/axiomhq/mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

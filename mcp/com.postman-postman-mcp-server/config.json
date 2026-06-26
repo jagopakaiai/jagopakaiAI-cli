@@ -1,0 +1,15 @@
+{
+  "name": "com.postman-postman-mcp-server",
+  "displayName": "Postman",
+  "description": "A basic MCP server to operate on the Postman API.",
+  "repository": "https://github.com/postmanlabs/postman-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@postman/postman-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

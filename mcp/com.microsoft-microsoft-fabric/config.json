@@ -1,0 +1,15 @@
+{
+  "name": "com.microsoft-microsoft-fabric",
+  "displayName": "Microsoft Fabric MCP Server",
+  "description": "MCP tools for interacting with Microsoft Fabric",
+  "repository": "https://github.com/microsoft/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "Microsoft.Fabric.Mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

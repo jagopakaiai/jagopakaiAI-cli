@@ -1,0 +1,15 @@
+{
+  "name": "io.snyk-mcp",
+  "displayName": "Snyk",
+  "description": "Easily find and fix security issues in your applications leveraging Snyk platform capabilities.",
+  "repository": "https://github.com/snyk/studio-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "snyk"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

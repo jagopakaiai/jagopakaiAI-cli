@@ -1,0 +1,12 @@
+{
+  "name": "com.stackoverflow.mcp-mcp",
+  "displayName": "Stack Overflow MCP Server",
+  "description": "Access Stack Overflow's trusted and verified technical questions and answers.",
+  "repository": "https://github.com/StackExchange/Stack-MCP",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

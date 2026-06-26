@@ -1,0 +1,15 @@
+{
+  "name": "com.shipstatic-mcp",
+  "displayName": "ShipStatic",
+  "description": "Deploy websites from AI agents. Free at mcp.shipstatic.com. Install for the full toolset.",
+  "repository": "https://github.com/shipstatic/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@shipstatic/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

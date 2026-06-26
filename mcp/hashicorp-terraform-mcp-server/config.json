@@ -1,0 +1,15 @@
+{
+  "name": "hashicorp-terraform-mcp-server",
+  "displayName": "Terraform",
+  "description": "Generate more accurate Terraform and automate workflows for HCP Terraform and Terraform Enterprise",
+  "repository": "https://github.com/hashicorp/terraform-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "docker.io/hashicorp/terraform-mcp-server:1.0.0"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

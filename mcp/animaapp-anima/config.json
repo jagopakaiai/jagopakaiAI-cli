@@ -1,0 +1,12 @@
+{
+  "name": "animaapp-anima",
+  "displayName": "Anima MCP Server",
+  "description": "Connect AI coding agents to Anima Playground, Figma, and your design system.",
+  "repository": "https://github.com/AnimaApp/mcp-server-guide",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

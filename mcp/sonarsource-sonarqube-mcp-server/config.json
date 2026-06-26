@@ -1,0 +1,15 @@
+{
+  "name": "sonarsource-sonarqube-mcp-server",
+  "displayName": "SonarQube MCP Server",
+  "description": "Analyze code quality and security with SonarQube Server or Cloud directly in AI assistants.",
+  "repository": "https://github.com/SonarSource/sonarqube-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "docker.io/sonarsource/sonarqube-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

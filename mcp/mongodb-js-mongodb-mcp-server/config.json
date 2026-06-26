@@ -1,0 +1,15 @@
+{
+  "name": "mongodb-js-mongodb-mcp-server",
+  "displayName": "Mongodb",
+  "description": "MongoDB Model Context Protocol Server",
+  "repository": "https://github.com/mongodb-js/mongodb-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "mongodb-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

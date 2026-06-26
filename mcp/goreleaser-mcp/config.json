@@ -1,0 +1,15 @@
+{
+  "name": "goreleaser-mcp",
+  "displayName": "The MCP server for GoReleaser",
+  "description": "GoReleaser MCP server",
+  "repository": "https://github.com/goreleaser/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "ghcr.io/goreleaser/mcp:0.4.0"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

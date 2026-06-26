@@ -1,0 +1,15 @@
+{
+  "name": "wonderwhy-er-desktop-commander",
+  "displayName": "Desktop Commander",
+  "description": "MCP server for terminal commands, file operations, and process management",
+  "repository": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@wonderwhy-er/desktop-commander"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

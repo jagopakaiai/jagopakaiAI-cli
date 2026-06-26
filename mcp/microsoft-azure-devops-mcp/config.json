@@ -1,0 +1,15 @@
+{
+  "name": "microsoft-azure-devops-mcp",
+  "displayName": "Azure DevOps",
+  "description": "Interact with Azure DevOps services like repositories, work items, builds, releases, test plans, and code search.",
+  "repository": "https://github.com/microsoft/azure-devops-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@azure-devops/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

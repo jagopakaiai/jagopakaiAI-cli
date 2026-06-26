@@ -1,0 +1,15 @@
+{
+  "name": "octopusdeploy-mcp-server",
+  "displayName": "Octopus Deploy",
+  "description": "Deliver software to Kubernetes, multi-cloud, on-prem infrastructure, and anywhere else",
+  "repository": "https://github.com/OctopusDeploy/mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@octopusdeploy/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

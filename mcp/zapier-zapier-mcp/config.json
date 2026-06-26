@@ -1,0 +1,12 @@
+{
+  "name": "zapier-zapier-mcp",
+  "displayName": "Zapier",
+  "description": "Zapier MCP is a remote MCP server that gives your AI direct access to 8,000+ apps and 30,000+ actions\u2014no complex API integrations required.",
+  "repository": "https://github.com/zapier/zapier-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

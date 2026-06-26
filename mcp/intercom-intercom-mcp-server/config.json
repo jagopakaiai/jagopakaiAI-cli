@@ -1,0 +1,12 @@
+{
+  "name": "intercom-intercom-mcp-server",
+  "displayName": "Intercom",
+  "description": "Enable AI agents to securely access and interact with your Intercom data whenever helpful.",
+  "repository": "https://github.com/intercom/intercom-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

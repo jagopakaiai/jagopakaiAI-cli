@@ -1,0 +1,15 @@
+{
+  "name": "arm-arm-mcp",
+  "displayName": "Arm MCP Server",
+  "description": "Official Arm MCP server for code migration, optimization, and Arm architecture guidance",
+  "repository": "https://github.com/arm/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "docker.io/armlimited/arm-mcp:2.0.0"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

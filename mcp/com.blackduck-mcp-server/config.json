@@ -1,0 +1,15 @@
+{
+  "name": "com.blackduck-mcp-server",
+  "displayName": "Black Duck Security Scanner",
+  "description": "AI-powered security scanning using Black Duck Signal for vulnerability detection.",
+  "repository": "https://github.com/blackducksoftware/mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@black-duck/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

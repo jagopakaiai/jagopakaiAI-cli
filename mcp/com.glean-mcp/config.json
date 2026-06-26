@@ -1,0 +1,12 @@
+{
+  "name": "com.glean-mcp",
+  "displayName": "Glean Remote MCP Server",
+  "description": "Remote MCP Server that securely connects Glean Enterprise Knowledge with your IDE, LLM, or agents.",
+  "repository": "https://github.com/gleanwork/remote-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

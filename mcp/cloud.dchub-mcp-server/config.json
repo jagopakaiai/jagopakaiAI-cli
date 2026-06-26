@@ -1,0 +1,12 @@
+{
+  "name": "cloud.dchub-mcp-server",
+  "displayName": "DC Hub \u2014 Data Center & Energy Intelligence",
+  "description": "Data-center, power, energy, renewables & gas intelligence for AI agents \u2014 query and cite.",
+  "repository": "https://github.com/azmartone67/dchub-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

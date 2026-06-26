@@ -1,0 +1,15 @@
+{
+  "name": "sap-fiori-mcp-server",
+  "displayName": "SAP Fiori",
+  "description": "SAP Fiori - Model Context Protocol (MCP) server",
+  "repository": "https://github.com/SAP/open-ux-tools",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@sap-ux/fiori-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "microsoft-markitdown",
+  "displayName": "Markitdown",
+  "description": "Convert various file formats (PDF, Word, Excel, images, audio) to Markdown.",
+  "repository": "https://github.com/microsoft/markitdown",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "markitdown-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

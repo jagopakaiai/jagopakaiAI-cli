@@ -1,0 +1,15 @@
+{
+  "name": "pgedge-postgres-mcp",
+  "displayName": "pgEdge Postgres",
+  "description": "Enterprise PostgreSQL MCP server with NL queries, hybrid search (pgvector+BM25), and web UI",
+  "repository": "https://github.com/pgEdge/pgedge-postgres-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "ghcr.io/pgedge/postgres-mcp:latest"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

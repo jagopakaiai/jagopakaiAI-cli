@@ -1,0 +1,15 @@
+{
+  "name": "chromedevtools-chrome-devtools-mcp",
+  "displayName": "Chrome DevTools MCP",
+  "description": "MCP server for Chrome DevTools",
+  "repository": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "chrome-devtools-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

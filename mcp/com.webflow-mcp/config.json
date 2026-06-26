@@ -1,0 +1,12 @@
+{
+  "name": "com.webflow-mcp",
+  "displayName": "Webflow",
+  "description": "AI-powered design and management for Webflow Sites",
+  "repository": "https://github.com/webflow/mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

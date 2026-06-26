@@ -1,0 +1,12 @@
+{
+  "name": "huggingface-hf-mcp-server",
+  "displayName": "Hugging Face",
+  "description": "Access Hugging Face models, datasets, Spaces, papers, collections via MCP.",
+  "repository": "https://github.com/huggingface/hf-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

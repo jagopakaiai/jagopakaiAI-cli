@@ -1,0 +1,12 @@
+{
+  "name": "antfu-nuxt-mcp",
+  "displayName": "Nuxt",
+  "description": "MCP server helping models understand your Vite/Nuxt app.",
+  "repository": "https://github.com/antfu/nuxt-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

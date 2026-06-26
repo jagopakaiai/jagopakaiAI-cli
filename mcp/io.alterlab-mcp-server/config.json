@@ -1,0 +1,15 @@
+{
+  "name": "io.alterlab-mcp-server",
+  "displayName": "Alterlab",
+  "description": "Web scraping MCP server \u2014 scrape, extract structured data, screenshot any site with anti-bot bypass.",
+  "repository": "https://github.com/RapierCraft/alterlab-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "alterlab-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

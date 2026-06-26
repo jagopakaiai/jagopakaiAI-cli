@@ -1,0 +1,12 @@
+{
+  "name": "com.getguru-mcp-server",
+  "displayName": "Guru Remote MCP Server",
+  "description": "Guru MCP Server - Connect AI tools to your Guru knowledge base",
+  "repository": "https://github.com/guruhq/remote-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

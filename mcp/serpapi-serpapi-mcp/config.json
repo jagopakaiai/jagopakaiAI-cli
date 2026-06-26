@@ -1,0 +1,12 @@
+{
+  "name": "serpapi-serpapi-mcp",
+  "displayName": "Serpapi",
+  "description": "Official SerpApi MCP server for Google, Bing, and other search engines.",
+  "repository": "https://github.com/serpapi/serpapi-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

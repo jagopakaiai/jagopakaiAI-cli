@@ -1,0 +1,15 @@
+{
+  "name": "microsoft-playwright-mcp",
+  "displayName": "Playwright",
+  "description": "Automate web browsers using accessibility trees for testing and data extraction.",
+  "repository": "https://github.com/microsoft/playwright-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@playwright/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,15 @@
+{
+  "name": "firecrawl-firecrawl-mcp-server",
+  "displayName": "Firecrawl",
+  "description": "Extract web data with Firecrawl",
+  "repository": "https://github.com/firecrawl/firecrawl-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "firecrawl-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

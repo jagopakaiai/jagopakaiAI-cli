@@ -1,0 +1,12 @@
+{
+  "name": "octoperf-octoperf",
+  "displayName": "OctoPerf",
+  "description": "Drive OctoPerf load testing from any AI agent: import, edit, validate, run scenarios, read metrics.",
+  "repository": "https://github.com/OctoPerf/octoperf-claude-plugins",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "io.port-port",
+  "displayName": "Port",
+  "description": "Port.io mcp server",
+  "repository": "https://github.com/port-labs/remote-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

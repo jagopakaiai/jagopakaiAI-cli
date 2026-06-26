@@ -1,0 +1,12 @@
+{
+  "name": "oakallow-oakallow",
+  "displayName": "Oakallow",
+  "description": "Runtime permission, approval, and audit layer for AI agent tool execution.",
+  "repository": "https://github.com/oakallow/oakallow-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

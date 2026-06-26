@@ -1,0 +1,14 @@
+{
+  "name": "pydantic-logfire-mcp",
+  "displayName": "Logfire",
+  "description": "Provides access to OpenTelemetry traces and metrics through Logfire.",
+  "repository": "https://github.com/pydantic/logfire-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "logfire-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

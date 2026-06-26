@@ -1,0 +1,15 @@
+{
+  "name": "ihor-sokoliuk-mcp-searxng",
+  "displayName": "SearXNG Search",
+  "description": "MCP server for SearXNG \u2014 privacy-respecting web search with pagination, URL reading",
+  "repository": "https://github.com/ihor-sokoliuk/mcp-searxng",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "mcp-searxng"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

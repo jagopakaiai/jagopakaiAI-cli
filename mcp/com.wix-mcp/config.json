@@ -1,0 +1,12 @@
+{
+  "name": "com.wix-mcp",
+  "displayName": "Wix",
+  "description": "A Model Context Protocol server for Wix AI tools",
+  "repository": "https://github.com/wix/wix-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

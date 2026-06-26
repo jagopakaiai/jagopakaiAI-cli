@@ -1,0 +1,15 @@
+{
+  "name": "com.smartbear-smartbear-mcp",
+  "displayName": "SmartBear MCP",
+  "description": "MCP server for AI access to SmartBear tools, including BugSnag, Reflect, Swagger, PactFlow, QTM4J.",
+  "repository": "https://github.com/SmartBear/smartbear-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@smartbear/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

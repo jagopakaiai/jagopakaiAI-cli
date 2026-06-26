@@ -1,0 +1,15 @@
+{
+  "name": "microsoft-devbox-mcp-server",
+  "displayName": "Dev Box",
+  "description": "This server enables natural language interactions for developer-focused operations like managing Dev Boxes, configurations, and pools.",
+  "repository": "https://github.com/microsoft/devbox-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@microsoft/devbox-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

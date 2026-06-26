@@ -1,0 +1,15 @@
+{
+  "name": "microsoft-awesome-copilot",
+  "displayName": "Awesome Copilot MCP Server",
+  "description": "An MCP server that stores Copilot customizations from the Awesome Copilot repository",
+  "repository": "https://github.com/microsoft/mcp-dotnet-samples",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "ghcr.io/microsoft/mcp-dotnet-samples/awesome-copilot:1.0.2026062305"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "crowdstrike-falcon-mcp",
+  "displayName": "CrowdStrike Falcon MCP Server",
+  "description": "Connects AI agents with CrowdStrike Falcon for security analysis and automation.",
+  "repository": "https://github.com/CrowdStrike/falcon-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "falcon-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

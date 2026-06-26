@@ -1,0 +1,15 @@
+{
+  "name": "upstash-context7",
+  "displayName": "Context7",
+  "description": "Up-to-date code docs for any prompt",
+  "repository": "https://github.com/upstash/context7",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@upstash/context7-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

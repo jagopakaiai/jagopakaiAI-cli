@@ -1,0 +1,12 @@
+{
+  "name": "box-mcp-server-box-remote",
+  "displayName": "Box",
+  "description": "Securely connect AI agents to your enterprise content in Box",
+  "repository": "https://github.com/box/mcp-server-box-remote",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

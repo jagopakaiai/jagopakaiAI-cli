@@ -1,0 +1,14 @@
+{
+  "name": "chroma-core-chroma-mcp",
+  "displayName": "Chroma",
+  "description": "Provides data retrieval capabilities powered by Chroma, enabling AI models to create collections over generated data and user inputs, and retrieve that data using vector search, full text search, metadata filtering, and more.",
+  "repository": "https://github.com/chroma-core/chroma-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "chroma-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

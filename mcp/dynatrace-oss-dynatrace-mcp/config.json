@@ -1,0 +1,15 @@
+{
+  "name": "dynatrace-oss-dynatrace-mcp",
+  "displayName": "Dynatrace",
+  "description": "Access Dynatrace observability data: logs, metrics, problems, vulnerabilities via DQL and Davis AI",
+  "repository": "https://github.com/dynatrace-oss/Dynatrace-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@dynatrace-oss/dynatrace-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,15 @@
+{
+  "name": "bytebase-dbhub",
+  "displayName": "DBHub",
+  "description": "Minimal, token-efficient Database MCP Server for PostgreSQL, MySQL, SQL Server, SQLite, MariaDB",
+  "repository": "https://github.com/bytebase/dbhub",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@bytebase/dbhub"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

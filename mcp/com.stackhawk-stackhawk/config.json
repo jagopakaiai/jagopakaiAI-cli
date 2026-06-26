@@ -1,0 +1,14 @@
+{
+  "name": "com.stackhawk-stackhawk",
+  "displayName": "Stackhawk",
+  "description": "An MCP server that provides interaction with StackHawk's security scanning platform.",
+  "repository": "https://github.com/stackhawk/stackhawk-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "stackhawk-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

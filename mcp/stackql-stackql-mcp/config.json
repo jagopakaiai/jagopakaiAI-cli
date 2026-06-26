@@ -1,0 +1,15 @@
+{
+  "name": "stackql-stackql-mcp",
+  "displayName": "StackQL MCP Server",
+  "description": "SQL-native query and provisioning engine for cloud infrastructure, served over MCP.",
+  "repository": "https://github.com/stackql/stackql",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "https://github.com/stackql/stackql/releases/download/v0.10.500/stackql-mcp-linux-x64.mcpb"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

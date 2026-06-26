@@ -1,0 +1,15 @@
+{
+  "name": "ui5-mcp-server",
+  "displayName": "UI5",
+  "description": "MCP server for SAPUI5/OpenUI5 development",
+  "repository": "https://github.com/UI5/mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@ui5/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

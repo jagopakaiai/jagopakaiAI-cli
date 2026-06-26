@@ -1,0 +1,12 @@
+{
+  "name": "miroapp-mcp-server",
+  "displayName": "Miro",
+  "description": "Official Miro MCP server - Supports context to code and creating diagrams, docs, and data tables.",
+  "repository": "https://github.com/miroapp/miro-ai",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

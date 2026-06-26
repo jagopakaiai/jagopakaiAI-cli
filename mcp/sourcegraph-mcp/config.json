@@ -1,0 +1,12 @@
+{
+  "name": "sourcegraph-mcp",
+  "displayName": "Sourcegraph MCP Server",
+  "description": "Sourcegraph code search, semantic search, go-to-definition, find-references, and diff search.",
+  "repository": "https://github.com/sourcegraph-community/mcpregistry",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

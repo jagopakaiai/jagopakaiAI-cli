@@ -1,0 +1,15 @@
+{
+  "name": "getsentry-sentry-mcp",
+  "displayName": "Getsentry Sentry",
+  "description": "MCP server for Sentry - error monitoring, issue tracking, and debugging for AI assistants",
+  "repository": "https://github.com/getsentry/sentry-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@sentry/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "app.lucid.mcp-lucid",
+  "displayName": "Lucid",
+  "description": "Lucid\u2019s connector creates diagrams, searches, edits, shares, and retrieves docs to summarize.",
+  "repository": "https://github.com/lucidsoftware/lucid-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

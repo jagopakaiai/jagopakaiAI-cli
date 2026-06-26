@@ -1,0 +1,12 @@
+{
+  "name": "com.monday-monday.com",
+  "displayName": "Monday",
+  "description": "MCP server for monday.com integration.",
+  "repository": "https://github.com/mondaycom/mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

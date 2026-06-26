@@ -1,0 +1,12 @@
+{
+  "name": "io.shipbook-mcp",
+  "displayName": "Shipbook",
+  "description": "Debug production issues using Shipbook logs and Loglytics error insights.",
+  "repository": "https://github.com/ShipBook/shipbook-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

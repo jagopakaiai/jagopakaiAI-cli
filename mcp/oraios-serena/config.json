@@ -1,0 +1,14 @@
+{
+  "name": "oraios-serena",
+  "displayName": "Serena",
+  "description": "Semantic code retrieval & editing tools for coding agents.",
+  "repository": "https://github.com/oraios/serena",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "serena"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "holomodular-servicebricks",
+  "displayName": "Holomodular Servicebricks",
+  "description": "Generate a ServiceBricks C# .NET microservice as a ZIP file.",
+  "repository": "https://github.com/holomodular/ServiceBricks",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

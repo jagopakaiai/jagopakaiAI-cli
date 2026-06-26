@@ -1,0 +1,12 @@
+{
+  "name": "host.justcall.mcp-justcall-mcp-server",
+  "displayName": "JustCall MCP Server",
+  "description": "JustCall MCP Server enables LLMs and AI agents to make voice calls and send SMS via JustCall APIs.",
+  "repository": "https://github.com/saaslabsco/justcall-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,15 @@
+{
+  "name": "com.microsoft-nuget",
+  "displayName": "Microsoft Nuget",
+  "description": "A Model Context Protocol (MCP) server for NuGet.",
+  "repository": "https://github.com/NuGet/Home",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "NuGet.Mcp.Server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

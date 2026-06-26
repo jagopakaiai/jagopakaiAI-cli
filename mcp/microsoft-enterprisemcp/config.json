@@ -1,0 +1,12 @@
+{
+  "name": "microsoft-enterprisemcp",
+  "displayName": "Microsoft MCP Server for Enterprise",
+  "description": "Official Microsoft MCP Server to query Microsoft Entra data using natural language",
+  "repository": "https://github.com/microsoft/EnterpriseMCP",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

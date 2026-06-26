@@ -1,0 +1,12 @@
+{
+  "name": "com.apify-apify-mcp-server",
+  "displayName": "Apify",
+  "description": "Extract data from any website with thousands of scrapers, crawlers, and automations on Apify Store \u26a1",
+  "repository": "https://github.com/apify/apify-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

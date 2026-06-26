@@ -1,0 +1,15 @@
+{
+  "name": "f-prompts.chat-mcp",
+  "displayName": "prompts.chat MCP Server",
+  "description": "Search and retrieve AI prompts from prompts.chat, the social platform for AI prompts.",
+  "repository": "https://github.com/f/prompts.chat-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@fkadev/prompts.chat-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

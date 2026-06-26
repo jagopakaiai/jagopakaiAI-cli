@@ -1,0 +1,12 @@
+{
+  "name": "netdata-mcp-server",
+  "displayName": "Netdata",
+  "description": "Real-time infrastructure monitoring with metrics, logs, alerts, and ML-based anomaly detection.",
+  "repository": "https://github.com/netdata/netdata",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

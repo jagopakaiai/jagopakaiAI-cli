@@ -1,0 +1,12 @@
+{
+  "name": "jfrog-jfrog-mcp-server",
+  "displayName": "JFrog Remote MCP Server",
+  "description": "MCP Server for JFrog, providing tools for development and artifact management.",
+  "repository": "https://github.com/jfrog/jfrog-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

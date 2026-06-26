@@ -1,0 +1,15 @@
+{
+  "name": "microsoft-clarity-mcp-server",
+  "displayName": "Clarity",
+  "description": "Fetch Clarity analytics via MCP clients.",
+  "repository": "https://github.com/microsoft/clarity-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@microsoft/clarity-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

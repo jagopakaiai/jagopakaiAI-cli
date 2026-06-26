@@ -1,0 +1,15 @@
+{
+  "name": "rigour-labs-rigour",
+  "displayName": "Rigour",
+  "description": "Quality gates for AI agents. Lint, test, build checks with memory persistence.",
+  "repository": "https://github.com/rigour-labs/rigour",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@rigour-labs/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

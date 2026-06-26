@@ -1,0 +1,15 @@
+{
+  "name": "vercel-next-devtools-mcp",
+  "displayName": "Vercel Next Dev Tools",
+  "description": "Next.js development tools MCP server with stdio transport",
+  "repository": "https://github.com/vercel/next-devtools-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "next-devtools-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

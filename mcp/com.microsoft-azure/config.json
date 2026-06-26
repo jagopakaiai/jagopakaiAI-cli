@@ -1,0 +1,15 @@
+{
+  "name": "com.microsoft-azure",
+  "displayName": "Azure MCP Server",
+  "description": "All Azure MCP tools to create a seamless connection between AI agents and Azure services.",
+  "repository": "https://github.com/microsoft/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "Azure.Mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

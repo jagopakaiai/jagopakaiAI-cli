@@ -1,0 +1,12 @@
+{
+  "name": "com.vercel-vercel-mcp",
+  "displayName": "Vercel",
+  "description": "An MCP server for Vercel",
+  "repository": "https://github.com/vercel/vercel-mcp-overview",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

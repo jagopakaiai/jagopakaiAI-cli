@@ -1,0 +1,15 @@
+{
+  "name": "sunriseapps-imagesorcery-mcp",
+  "displayName": "Imagesorcery",
+  "description": "Local image processing with computer vision capabilities including object detection, OCR, image editing, and transformations.",
+  "repository": "https://github.com/sunriseapps/imagesorcery-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "imagesorcery-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

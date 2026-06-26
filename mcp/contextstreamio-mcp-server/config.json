@@ -1,0 +1,15 @@
+{
+  "name": "contextstreamio-mcp-server",
+  "displayName": "ContextStream MCP Server",
+  "description": "ContextStream MCP server for code context, memory, search, and AI tools.",
+  "repository": "https://github.com/contextstream/mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@contextstream/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

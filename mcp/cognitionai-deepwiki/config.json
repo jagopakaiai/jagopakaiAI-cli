@@ -1,0 +1,12 @@
+{
+  "name": "cognitionai-deepwiki",
+  "displayName": "DeepWiki",
+  "description": "Devin-generated docs for any public repo",
+  "repository": "https://github.com/CognitionAI/deepwiki",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

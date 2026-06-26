@@ -1,0 +1,14 @@
+{
+  "name": "oleksiijko-pmb-ai",
+  "displayName": "PMB AI",
+  "description": "Local-first persistent memory for AI coding agents.",
+  "repository": "https://github.com/oleksiijko/pmb",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "pmb-ai"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

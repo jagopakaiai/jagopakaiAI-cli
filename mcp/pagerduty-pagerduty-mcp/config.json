@@ -1,0 +1,14 @@
+{
+  "name": "pagerduty-pagerduty-mcp",
+  "displayName": "PagerDuty",
+  "description": "PagerDuty's official MCP server which provides tools to interact with your PagerDuty account.",
+  "repository": "https://github.com/PagerDuty/pagerduty-mcp-server",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "pagerduty-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

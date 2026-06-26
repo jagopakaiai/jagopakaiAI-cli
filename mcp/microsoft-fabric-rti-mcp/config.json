@@ -1,0 +1,14 @@
+{
+  "name": "microsoft-fabric-rti-mcp",
+  "displayName": "Fabric Real-Time Intelligence",
+  "description": "Query Eventhouse/ADX with KQL and manage Eventstreams.",
+  "repository": "https://github.com/microsoft/fabric-rti-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "microsoft-fabric-rti-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

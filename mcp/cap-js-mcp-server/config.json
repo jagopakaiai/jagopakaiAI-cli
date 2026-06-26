@@ -1,0 +1,15 @@
+{
+  "name": "cap-js-mcp-server",
+  "displayName": "Cap JS",
+  "description": "Model Context Protocol (MCP) server for AI-assisted development of CAP applications.",
+  "repository": "https://github.com/cap-js/mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@cap-js/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

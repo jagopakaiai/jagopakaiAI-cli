@@ -1,0 +1,12 @@
+{
+  "name": "com.sonatype-dependency-management-mcp-server",
+  "displayName": "Sonatype Dependency Management",
+  "description": "Sonatype component intelligence: versions, security analysis, and Trust Score recommendations",
+  "repository": "https://github.com/sonatype/dependency-management-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

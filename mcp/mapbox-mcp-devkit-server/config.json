@@ -1,0 +1,15 @@
+{
+  "name": "mapbox-mcp-devkit-server",
+  "displayName": "Mapbox MCP Devkit Server",
+  "description": "Provides AI assistants with direct access to Mapbox developer APIs and documentation.",
+  "repository": "https://github.com/mapbox/mcp-devkit-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@mapbox/mcp-devkit-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

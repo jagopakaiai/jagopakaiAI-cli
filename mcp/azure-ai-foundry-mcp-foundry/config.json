@@ -1,0 +1,14 @@
+{
+  "name": "azure-ai-foundry-mcp-foundry",
+  "displayName": "Azure AI Foundry",
+  "description": "An experimental MCP server implementation for Azure AI Foundry that exposes unified tools for models, knowledge, evaluation and deployment.",
+  "repository": "https://github.com/azure-ai-foundry/mcp-foundry",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "run-azure-ai-foundry-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

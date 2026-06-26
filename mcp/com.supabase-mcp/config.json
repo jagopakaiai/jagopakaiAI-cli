@@ -1,0 +1,15 @@
+{
+  "name": "com.supabase-mcp",
+  "displayName": "Supabase",
+  "description": "MCP server for interacting with the Supabase platform",
+  "repository": "https://github.com/supabase/mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@supabase/mcp-server-supabase"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

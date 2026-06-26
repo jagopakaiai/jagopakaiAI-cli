@@ -1,0 +1,12 @@
+{
+  "name": "amplitude-mcp-server-guide",
+  "displayName": "Amplitude",
+  "description": "Search, access, and get insights on your Amplitude data",
+  "repository": "https://github.com/amplitude/mcp-server-guide",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

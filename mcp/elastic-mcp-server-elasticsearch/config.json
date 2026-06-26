@@ -1,0 +1,15 @@
+{
+  "name": "elastic-mcp-server-elasticsearch",
+  "displayName": "Elasticsearch",
+  "description": "MCP server for connecting to Elasticsearch data and indices. Supports search queries, mappings, ES|QL, and shard information through natural language interactions.",
+  "repository": "https://github.com/elastic/mcp-server-elasticsearch",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "docker.elastic.co/mcp/elasticsearch"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

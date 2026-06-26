@@ -1,0 +1,15 @@
+{
+  "name": "brightdata-brightdata-mcp",
+  "displayName": "Brightdata",
+  "description": "Bright Data's Web MCP server enabling AI agents to search, extract & navigate the web",
+  "repository": "https://github.com/brightdata/brightdata-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@brightdata/mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

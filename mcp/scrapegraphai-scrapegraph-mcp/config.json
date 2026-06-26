@@ -1,0 +1,14 @@
+{
+  "name": "scrapegraphai-scrapegraph-mcp",
+  "displayName": "ScrapeGraphAI Scrapegraph",
+  "description": "AI-powered web scraping and data extraction capabilities through ScrapeGraph API",
+  "repository": "https://github.com/ScrapeGraphAI/scrapegraph-mcp",
+  "mcpConfig": {
+    "command": "uvx",
+    "args": [
+      "scrapegraph-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

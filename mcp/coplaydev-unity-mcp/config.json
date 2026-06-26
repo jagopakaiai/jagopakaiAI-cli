@@ -1,0 +1,15 @@
+{
+  "name": "coplaydev-unity-mcp",
+  "displayName": "Unity",
+  "description": "Control the Unity Editor from MCP clients via a Unity bridge + local Python server.",
+  "repository": "https://github.com/CoplayDev/unity-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "uv"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

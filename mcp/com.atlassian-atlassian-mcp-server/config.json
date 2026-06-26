@@ -1,0 +1,12 @@
+{
+  "name": "com.atlassian-atlassian-mcp-server",
+  "displayName": "Atlassian Rovo MCP Server",
+  "description": "Connect to Atlassian Jira, Confluence, and Compass to search, create, and manage your work.",
+  "repository": "https://github.com/atlassian/atlassian-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

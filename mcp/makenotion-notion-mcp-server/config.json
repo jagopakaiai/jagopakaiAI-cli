@@ -1,0 +1,12 @@
+{
+  "name": "makenotion-notion-mcp-server",
+  "displayName": "Notion",
+  "description": "Official MCP server for Notion API",
+  "repository": "https://github.com/makenotion/notion-mcp-server",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

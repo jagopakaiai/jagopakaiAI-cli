@@ -1,0 +1,12 @@
+{
+  "name": "com.stripe-mcp",
+  "displayName": "Stripe",
+  "description": "MCP server integrating with Stripe - tools for customers, products, payments, and more.",
+  "repository": "https://github.com/stripe/agent-toolkit",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

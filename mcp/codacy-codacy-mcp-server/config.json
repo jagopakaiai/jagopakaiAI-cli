@@ -1,0 +1,15 @@
+{
+  "name": "codacy-codacy-mcp-server",
+  "displayName": "Codacy",
+  "description": "MCP Server for the Codacy API, enabling access to repositories, files, quality, coverage, security and more.",
+  "repository": "https://github.com/codacy/codacy-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@codacy/codacy-mcp"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

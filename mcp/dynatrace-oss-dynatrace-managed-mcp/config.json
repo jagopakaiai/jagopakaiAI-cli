@@ -1,0 +1,15 @@
+{
+  "name": "dynatrace-oss-dynatrace-managed-mcp",
+  "displayName": "Dynatrace Managed",
+  "description": "MCP server for Dynatrace Managed to access logs, events, and metrics.",
+  "repository": "https://github.com/dynatrace-oss/dynatrace-managed-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@dynatrace-oss/dynatrace-managed-mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

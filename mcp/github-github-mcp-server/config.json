@@ -1,0 +1,15 @@
+{
+  "name": "github-github-mcp-server",
+  "displayName": "GitHub",
+  "description": "Connect AI assistants to GitHub - manage repos, issues, PRs, and workflows through natural language.",
+  "repository": "https://github.com/github/github-mcp-server",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "ghcr.io/github/github-mcp-server:1.4.0"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

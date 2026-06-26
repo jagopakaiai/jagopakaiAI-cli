@@ -1,0 +1,12 @@
+{
+  "name": "com.microsoft-sentinel-data-exploration",
+  "displayName": "Microsoft Sentinel Data Exploration",
+  "description": "Find relevant security data from Sentinel data lake for building effective agents. More:aka.ms/s/de",
+  "repository": "https://github.com/microsoft/sentinel-data-exploration-mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

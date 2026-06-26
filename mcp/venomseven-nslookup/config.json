@@ -1,0 +1,15 @@
+{
+  "name": "venomseven-nslookup",
+  "displayName": "Venomseven Nslookup",
+  "description": "DNS lookups, health reports, SSL certs, security scans, GEO scoring, uptime checks",
+  "repository": "https://github.com/NsLookup-io/nslookup-mcp",
+  "mcpConfig": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@nslookup-io/mcp-server"
+    ],
+    "env": {}
+  },
+  "env": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "dev.lovable-mcp",
+  "displayName": "Lovable",
+  "description": "Official MCP server for Lovable, the AI-powered full-stack app builder.",
+  "repository": "https://github.com/lovablelabs/mcp",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}

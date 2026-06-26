@@ -1,0 +1,12 @@
+{
+  "name": "com.figma.mcp-mcp",
+  "displayName": "Figma MCP Server",
+  "description": "The Figma MCP server brings Figma design context directly into your AI workflow.",
+  "repository": "https://github.com/figma/mcp-server-guide",
+  "mcpConfig": {
+    "command": "",
+    "args": [],
+    "env": {}
+  },
+  "env": {}
+}
