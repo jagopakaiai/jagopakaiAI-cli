@@ -326,56 +326,248 @@ async function manageSkillMenu(sInfo: SkillInfo) {
 }
 
 export async function skillsCreateCommand() {
-  p.intro('Create New Skill Template');
+  p.intro('JagoPakaiAI Skill Creator — Multi-Step Wizard');
+
+  // ─── Step 1: Archetype / Category ──────────────────────────
+  const category = await p.select({
+    message: 'Step 1/6 — Choose skill category / archetype:',
+    options: [
+      { value: 'coding', label: '💻 Coding Standards — language/framework conventions' },
+      { value: 'workflow', label: '🔄 Workflow — step-by-step development process' },
+      { value: 'debugging', label: '🔍 Debugging — root cause analysis & fix patterns' },
+      { value: 'architecture', label: '🏗️ Architecture — design patterns & structure' },
+      { value: 'testing', label: '🧪 Testing — testing methodology & coverage' },
+      { value: 'security', label: '🔒 Security — secure coding & audit' },
+      { value: 'docs', label: '📖 Documentation — writing docs & comments' },
+      { value: 'custom', label: '⭐ Custom / Blank — start from scratch' }
+    ]
+  });
+  if (p.isCancel(category)) return;
+
+  // ─── Step 2: Clone from existing? ──────────────────────────
+  let cloneSource: string | null = null;
+  const shouldClone = await p.confirm({
+    message: 'Clone from an existing installed skill as base?',
+    initialValue: false
+  });
+  if (p.isCancel(shouldClone)) return;
+
+  if (shouldClone) {
+    const candidates: { label: string; value: string }[] = [];
+    const wsDir = path.join(process.cwd(), '.agents', 'skills');
+    const glDir = GLOBAL_SKILLS_DIR;
+
+    for (const dir of [wsDir, glDir]) {
+      if (fs.existsSync(dir)) {
+        for (const d of fs.readdirSync(dir)) {
+          const skillFile = path.join(dir, d, 'SKILL.md');
+          if (fs.existsSync(skillFile)) {
+            const parsed = parseSkillFile(skillFile);
+            if (parsed.isValid) {
+              candidates.push({
+                value: skillFile,
+                label: `${parsed.metadata.name} — ${parsed.metadata.description.substring(0, 50)}`
+              });
+            }
+          }
+        }
+      }
+    }
+
+    if (candidates.length === 0) {
+      p.log.warn('No existing skills found to clone from.');
+    } else {
+      const chosen = await p.select({
+        message: 'Select skill to clone:',
+        options: candidates
+      });
+      if (!p.isCancel(chosen)) {
+        cloneSource = chosen as string;
+      }
+    }
+  }
+
+  // ─── Step 3: Basic Info ─────────────────────────────────────
+  p.log.info('Step 2/6 — Basic Information');
 
   const name = await p.text({
-    message: 'Enter the skill name slug (lowercase-dash):',
+    message: 'Skill name slug (lowercase-dash):',
     placeholder: 'my-custom-validator',
     validate: (value) => {
-      if (!value || value.trim().length === 0) return 'Skill name is required!';
-      if (!/^[a-z0-9-]+$/.test(value)) return 'Skill name must contain only lowercase letters, numbers, and dashes.';
+      if (!value || value.trim().length === 0) return 'Required!';
+      if (!/^[a-z0-9-]+$/.test(value)) return 'Only lowercase letters, numbers, and dashes.';
     }
   });
   if (p.isCancel(name)) return;
 
   const description = await p.text({
-    message: 'Enter the skill description:',
-    placeholder: 'Best practice instructions for validating input models',
+    message: 'Short description (one line):',
+    placeholder: 'Validates input models with strict typing rules',
     validate: (value) => {
-      if (!value || value.trim().length === 0) return 'Description is required!';
+      if (!value || value.trim().length === 0) return 'Required!';
     }
   });
   if (p.isCancel(description)) return;
 
+  // ─── Step 4: Triggers ───────────────────────────────────────
+  p.log.info('Step 3/6 — When should this skill activate? (triggers)');
+
+  const triggers: string[] = [];
+  let addTrigger = true;
+  while (addTrigger) {
+    const trigger = await p.text({
+      message: `Trigger ${triggers.length + 1} (leave empty to finish):`,
+      placeholder: 'When user asks to refactor a function' 
+    });
+    if (p.isCancel(trigger)) return;
+    if (!trigger || (trigger as string).trim().length === 0) {
+      addTrigger = false;
+    } else {
+      triggers.push(trigger as string);
+    }
+  }
+  if (triggers.length === 0) {
+    triggers.push('When the skill context matches');
+  }
+
+  // ─── Step 5: Workflow Steps ─────────────────────────────────
+  p.log.info('Step 4/6 — Define the workflow steps');
+
+  const workflowSteps: string[] = [];
+  let addStep = true;
+  while (addStep) {
+    const step = await p.text({
+      message: `Step ${workflowSteps.length + 1} (leave empty to finish):`,
+      placeholder: 'Analyze the code structure first'
+    });
+    if (p.isCancel(step)) return;
+    if (!step || (step as string).trim().length === 0) {
+      addStep = false;
+    } else {
+      workflowSteps.push(step as string);
+    }
+  }
+  if (workflowSteps.length === 0) {
+    workflowSteps.push('Understand the context', 'Execute the task', 'Verify the result');
+  }
+
+  // ─── Step 6: Instructions ───────────────────────────────────
+  p.log.info('Step 5/6 — Add specific instructions (rules for the AI)');
+
+  const instructions: string[] = [];
+  let addInstruction = true;
+  while (addInstruction) {
+    const instruction = await p.text({
+      message: `Instruction ${instructions.length + 1} (leave empty to finish):`,
+      placeholder: 'Always validate input types before processing'
+    });
+    if (p.isCancel(instruction)) return;
+    if (!instruction || (instruction as string).trim().length === 0) {
+      addInstruction = false;
+    } else {
+      instructions.push(instruction as string);
+    }
+  }
+  if (instructions.length === 0) {
+    instructions.push('Follow project conventions');
+  }
+
+  // ─── Step 7: Tools ──────────────────────────────────────────
+  p.log.info('Step 6/6 — Required tools / resources');
+
+  const tools: string[] = [];
+  let addTool = true;
+  while (addTool) {
+    const tool = await p.text({
+      message: `Tool/resource ${tools.length + 1} (leave empty to finish):`,
+      placeholder: 'MCP: filesystem — to read project files'
+    });
+    if (p.isCancel(tool)) return;
+    if (!tool || (tool as string).trim().length === 0) {
+      addTool = false;
+    } else {
+      tools.push(tool as string);
+    }
+  }
+
+  // ─── Preview ────────────────────────────────────────────────
+  const { generateRichSkillContent } = await import('../utils/skills-parser.js');
+  let finalContent: string;
+
+  if (cloneSource && fs.existsSync(cloneSource)) {
+    const existing = fs.readFileSync(cloneSource, 'utf-8');
+    finalContent = existing
+      .replace(/^name:.*$/m, `name: ${name}`)
+      .replace(/^description:.*$/m, `description: "${description}"`);
+    p.log.info('Based on cloned skill with updated metadata.');
+  } else {
+    finalContent = generateRichSkillContent({
+      name: name as string,
+      description: description as string,
+      category: category as string,
+      triggers,
+      workflow: workflowSteps,
+      instructions,
+      tools
+    });
+  }
+
+  p.note(finalContent.length > 1000 ? finalContent.substring(0, 1000) + '\n\n...' : finalContent, '📝 Preview');
+
+  // ─── Target Scope ───────────────────────────────────────────
   const targetScope = await p.select({
-    message: 'Select target directory scope:',
+    message: 'Save to:',
     options: [
-      { value: 'workspace', label: 'Workspace-scoped (.agents/skills/)' },
-      { value: 'global', label: 'Global-scoped (~/.config/jagopakaiai-cli/skills/)' }
+      { value: 'workspace', label: '📁 Workspace (.agents/skills/)' },
+      { value: 'global', label: '🌍 Global (~/.config/jagopakaiai-cli/skills/)' }
     ]
   });
   if (p.isCancel(targetScope)) return;
 
-  const targetDir = targetScope === 'workspace' 
-    ? path.join(process.cwd(), '.agents', 'skills', name)
-    : path.join(GLOBAL_SKILLS_DIR, name);
+  const targetDir = targetScope === 'workspace'
+    ? path.join(process.cwd(), '.agents', 'skills', name as string)
+    : path.join(GLOBAL_SKILLS_DIR, name as string);
 
   const file = path.join(targetDir, 'SKILL.md');
 
+  // ─── Confirm & Write ────────────────────────────────────────
+  const confirm = await p.confirm({
+    message: 'Create this skill?',
+    initialValue: true
+  });
+  if (p.isCancel(confirm) || !confirm) {
+    p.cancel('Skill creation cancelled.');
+    return;
+  }
+
   const s = p.spinner();
-  s.start('Writing skill template...');
+  s.start('Writing skill file...');
   try {
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
-    const content = generateSkillTemplate(name, description);
-    fs.writeFileSync(file, content);
+    fs.writeFileSync(file, finalContent);
     s.stop('Skill created successfully!');
-    p.log.success(`Scaffolded skill at: ${file}`);
+    p.log.success(`Saved: ${file}`);
+
+    // Auto-validate
+    const result = parseSkillFile(file);
+    if (result.isValid) {
+      p.log.success('✅ Validation passed — frontmatter and structure valid.');
+    } else {
+      p.log.warn('⚠️  File saved but validation found issues:');
+      result.errors.forEach(e => p.log.warn(`  - ${e}`));
+    }
   } catch (err: any) {
     s.stop('Write failed!');
     p.log.error(err.message || String(err));
   }
+
+  // ─── Next Steps ─────────────────────────────────────────────
+  p.outro('What to do next:');
+  p.log.info(`  • Edit:         ${file}`);
+  p.log.info(`  • Validate:     jagopakaiai-cli skills validate ${file}`);
+  p.log.info(`  • Sync to editor: jagopakaiai-cli sync ${name}`);
 }
 
 export async function skillsValidateCommand() {
@@ -408,4 +600,88 @@ export async function skillsValidateCommand() {
     p.log.error('The skill file structure is INVALID!');
     p.note(result.errors.join('\n'), 'Validation Errors');
   }
+}
+
+export async function skillsSearchCommand(query: string) {
+  const discoveredMap = new Map<string, SkillInfo>();
+
+  const currentDir = process.cwd();
+  const workspaceSkillsDir = path.join(currentDir, '.agents', 'skills');
+  if (fs.existsSync(workspaceSkillsDir)) {
+    try {
+      for (const dirName of fs.readdirSync(workspaceSkillsDir)) {
+        const file = path.join(workspaceSkillsDir, dirName, 'SKILL.md');
+        if (fs.existsSync(file)) {
+          const parsed = parseSkillFile(file);
+          if (parsed.isValid) {
+            discoveredMap.set(parsed.metadata.name, {
+              name: parsed.metadata.name,
+              description: parsed.metadata.description,
+              scope: 'Workspace',
+              filePath: file
+            });
+          }
+        }
+      }
+    } catch {}
+  }
+
+  if (fs.existsSync(GLOBAL_SKILLS_DIR)) {
+    try {
+      for (const dirName of fs.readdirSync(GLOBAL_SKILLS_DIR)) {
+        const file = path.join(GLOBAL_SKILLS_DIR, dirName, 'SKILL.md');
+        if (fs.existsSync(file)) {
+          const parsed = parseSkillFile(file);
+          if (parsed.isValid && !discoveredMap.has(parsed.metadata.name)) {
+            discoveredMap.set(parsed.metadata.name, {
+              name: parsed.metadata.name,
+              description: parsed.metadata.description,
+              scope: 'Global',
+              filePath: file
+            });
+          }
+        }
+      }
+    } catch {}
+  }
+
+  for (const s of RECOMMENDED_SKILLS) {
+    if (!discoveredMap.has(s.name)) {
+      discoveredMap.set(s.name, s);
+    }
+  }
+
+  const keyword = query.toLowerCase();
+  const results = Array.from(discoveredMap.values()).filter(s =>
+    s.name.toLowerCase().includes(keyword) ||
+    s.description.toLowerCase().includes(keyword)
+  );
+
+  p.intro(`Search Results for "${query}"`);
+  if (results.length === 0) {
+    p.log.warn(`No skills matched "${query}".`);
+    p.outro('Try a different keyword.');
+    return;
+  }
+
+  const rows = results.map((s, i) => {
+    const scopeIcon = s.scope === 'Workspace' ? '📁' : s.scope === 'Global' ? '🌍' : '☁️';
+    return `${i + 1}. ${scopeIcon} ${pc.bold(s.name)}\n   ${s.description}`;
+  }).join('\n\n');
+
+  p.note(rows, `Found ${results.length} skill(s)`);
+
+  const select = await p.select({
+    message: 'Select a skill to manage:',
+    options: [
+      ...results.map(s => ({ value: s.name, label: `${s.name} — ${s.description.substring(0, 40)}` })),
+      { value: 'back', label: '🔙 Back' }
+    ]
+  });
+
+  if (!p.isCancel(select) && select !== 'back') {
+    const sInfo = results.find(s => s.name === select)!;
+    await manageSkillMenu(sInfo);
+  }
+  p.outro('Search complete.');
 }

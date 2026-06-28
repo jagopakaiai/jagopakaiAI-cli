@@ -1,7 +1,9 @@
+import fs from 'fs';
 import * as p from '@clack/prompts';
+import pc from 'picocolors';
 import os from 'os';
 import path from 'path';
-import { getRecommendedMcps, checkMcpInstalled, installMcpServer } from '../utils/mcp.js';
+import { getRecommendedMcps, checkMcpInstalled, installMcpServer, getClaudeConfig, saveClaudeConfig } from '../utils/mcp.js';
 
 export async function mcpListCommand() {
   p.intro('JagoPakaiAI Recommended MCP Servers');
@@ -100,4 +102,53 @@ export async function mcpInstallCommand(name: string) {
     s.stop('Installation failed!');
     p.log.error(err.message || String(err));
   }
+}
+
+export async function mcpUninstallCommand(name: string) {
+  const config = getClaudeConfig();
+  if (!config.mcpServers || !config.mcpServers[name]) {
+    p.log.warn(`MCP Server "${name}" is not installed.`);
+    return;
+  }
+
+  const confirm = await p.confirm({
+    message: `Remove MCP server "${name}" from Claude Code config?`,
+    initialValue: false
+  });
+
+  if (p.isCancel(confirm) || !confirm) {
+    p.cancel('Uninstall cancelled.');
+    return;
+  }
+
+  const s = p.spinner();
+  s.start(`Removing MCP server "${name}"...`);
+  delete config.mcpServers[name];
+  saveClaudeConfig(config);
+  s.stop('Removed successfully!');
+  p.log.success(`MCP server "${name}" has been uninstalled.`);
+}
+
+export async function mcpStatusCommand() {
+  p.intro('MCP Server Status');
+  const config = getClaudeConfig();
+  const allMcps = getRecommendedMcps();
+
+  const installed = allMcps.filter(m => checkMcpInstalled(m.name));
+
+  if (installed.length === 0) {
+    p.log.warn('No MCP servers are currently installed.');
+    p.outro(`Run ${pc.cyan('jagopakaiai-cli mcp list')} to see available servers.`);
+    return;
+  }
+
+  const rows = installed.map(m => {
+    const cfg = config.mcpServers?.[m.name];
+    const argsStr = cfg?.args?.join(' ') || '';
+    return `  ${pc.green('●')} ${pc.bold(m.displayName || m.name)}
+     ${pc.dim('Command:')} ${cfg?.command || '?'} ${argsStr}`;
+  }).join('\n\n');
+
+  p.note(rows, `Installed MCP Servers (${installed.length})`);
+  p.outro(`Use ${pc.cyan('jagopakaiai-cli mcp uninstall <name>')} to remove.`);
 }

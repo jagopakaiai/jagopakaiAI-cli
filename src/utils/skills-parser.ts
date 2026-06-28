@@ -126,9 +126,80 @@ export function generateSkillTemplate(name: string, description: string): string
     '',
     `# Skill: ${name}`,
     '',
-    'Write instructions or procedural steps for the AI agent below.',
+    '## Overview',
+    `${description}`,
+    '',
+    '## When to Use',
+    '- Trigger conditions for this skill',
+    '',
+    '## Workflow',
+    '1. Step one',
+    '2. Step two',
+    '3. Step three',
+    '',
+    '## Instructions',
+    '- Detailed instructions for the AI agent',
+    '',
+    '## Examples',
+    '```',
+    'Example usage or output',
+    '```',
+    '',
+    '## Troubleshooting',
+    '- Common issues and solutions',
     ''
   ].join('\n');
+}
+
+export function generateRichSkillContent(params: {
+  name: string;
+  description: string;
+  category: string;
+  triggers: string[];
+  workflow: string[];
+  instructions: string[];
+  tools: string[];
+}): string {
+  const sections: string[] = [
+    '---',
+    `name: ${params.name}`,
+    `description: "${params.description}"`,
+    `category: ${params.category}`,
+    '---',
+    '',
+    `# ${params.name}`,
+    '',
+    '## Overview',
+    params.description,
+    '',
+  ];
+
+  if (params.triggers.length > 0) {
+    sections.push('## When to Use');
+    sections.push(...params.triggers.map(t => `- ${t}`));
+    sections.push('');
+  }
+
+  if (params.workflow.length > 0) {
+    sections.push('## Workflow');
+    sections.push(...params.workflow.map((s, i) => `${i + 1}. ${s}`));
+    sections.push('');
+  }
+
+  if (params.instructions.length > 0) {
+    sections.push('## Instructions');
+    sections.push(...params.instructions.map(i => `- ${i}`));
+    sections.push('');
+  }
+
+  if (params.tools.length > 0) {
+    sections.push('## Required Tools / Resources');
+    sections.push(...params.tools.map(t => `- ${t}`));
+    sections.push('');
+  }
+
+  sections.push('## Examples', '```', '```', '', '## Troubleshooting', '- ');
+  return sections.join('\n');
 }
 
 export interface CuratedSkill {
